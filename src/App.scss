@@ -1,0 +1,186 @@
+@mixin icon {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: start;
+}
+
+@mixin icon-img {
+    width: 19px;
+    height: 19px;
+    color: #ffff;
+    margin-right: 15px;
+    margin-left: 30px;
+}
+
+@mixin icon-link {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #ffff;
+    text-decoration: none;
+    margin-right: 0px;
+    font-size: 15px;
+    &:hover{
+        color: #be3144;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    width: 300px;
+    height: 100vh;
+    background: #30323A;
+    position: sticky;
+    top: 0;
+
+
+    .nav__logo {
+        height: 29px;
+        font-family: "Parkway Lush";
+        color: #ffff;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .megaphone {
+        @include icon();
+        
+        .megaphone-icon{
+            @include icon-img();
+        }
+
+        .megaphone-link{
+            @include icon-link();
+        }
+    }
+
+    .tune {
+        @include icon();
+        
+        .tune-icon{
+            @include icon-img();
+        }
+
+        .tune-link{
+            @include icon-link();
+        }
+    }
+
+    .lupe {
+        @include icon();
+        
+        .lupe-icon{
+            @include icon-img();
+        }
+
+        .lupe-link{
+            @include icon-link();
+        }
+    }
+
+    .plus {
+        @include icon();
+        
+        .plus-icon{
+            @include icon-img();
+        }
+
+        .plus-link{
+            @include icon-link();
+        }
+    }
+
+    .bust {
+        @include icon();
+        
+        .bust-icon{
+            @include icon-img();
+        }
+
+        .bust-link{
+            @include icon-link();
+        }
+    }
+}
+
+.main {
+    width: 100%;
+    background: #EFEFEF;
+
+    .main__login{
+        display: flex;
+        right: 0;
+        float: right;
+        align-items: center;
+        
+
+        .loged-as{
+            padding-right: 10px;
+        }
+
+        .log-in-out{
+            width: 88px;
+            height: 32px;
+            background-color: #363840;
+            color: #FFFFFFDE;
+            margin-right: 10px;
+            &:hover{
+                background-color: #8f1f2e;
+            }
+        }
+    }
+
+    .main__description{
+        padding-left: 20px;
+        padding-top: 70px;
+        margin-right: 10px;
+
+        .main__description__title{  
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #be3144;
+        }
+
+        .main__description__sub-title{
+            margin-top: 0px;
+        }
+    }
+
+    .main__table{
+        padding-top: 25px;
+        margin-right: 10px;
+
+
+        .blocksHolder {
+
+            .table-form{
+
+                .submitBtn {
+                    background-color: #363840;
+                    &:hover{
+                        background-color: #8f1f2e;
+                    }
+                }
+    
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    body {
+      width: 80vw;
+      margin: auto;
+    }
+  }
