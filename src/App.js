@@ -131,16 +131,7 @@ class AddBlock extends React.Component {
 
 
 class Block extends React.Component {
-  constructor(props) {
-      super(props);
-      
-  }
-  componentDidMount(){
-      // console.log(this.props.listOfAds);
-  }
   render(){
-    //   adsData = this.props.listOfAds;
-    //   const enlistAds = adsData.map((elem) => <li key={elem.id.toString()}>elem</li>)
       return(
           <div style={{marginLeft: 0}}>   
               <div className="block" style={{margin: "auto", display: "flex", marginTop: 5, backgroundColor: "#FFFFFF", 
@@ -154,10 +145,10 @@ class Block extends React.Component {
                   </div>
                   <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", 
                   marginRight: 30, width: "1px"}}></div>
-                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
-                  <p style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
+                  <p id="instrumentP" style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
+                  <p id="genreP" style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
                   <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.fromWhen}</p>
-                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.city}</p>
+                  <p id="cityP" style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.city}</p>
               </div>
           </div>
       )
@@ -170,8 +161,17 @@ class Table extends React.Component {
       super(props);
       this.state = {
           showBlock: true,
-          wholeAds: []
+          wholeAds: [],
+          instrumentInput: "",
+          genreInput: "",
+          cityInput: "",
+          adsLiList: []
       };
+      this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleChangeInstrument = this.handleChangeInstrument.bind(this)
+      this.handleChangeGenre = this.handleChangeGenre.bind(this)
+      this.handleChangeCity = this.handleChangeCity.bind(this)
+      this.setLiList = this.setLiList.bind(this)
   }
   y = []
   componentDidMount(){
@@ -183,24 +183,92 @@ class Table extends React.Component {
           elem.published_at.slice(0,10), elem.instruments[0].name])
       })
     })
-    
-
+        
+    //Animations
     gsap.from(".table-disc", {duration: 1.5, x: +100 });
     gsap.from(".singleBlock", {duration: 1.5, x: +100 });
+  }
+  setLiList(){
+    if(this.state.adsLiList.length > 1){
+      return;
+    }
+    this.setState({
+      adsLiList: document.querySelectorAll("li")
+    })
+  }
+  handleSubmit(event){
+    event.preventDefault();
 
+    if(this.state.adsLiList === []){
+      const filters = document.querySelectorAll("li")
+      const filtersList = [...filters]
+      console.log(filtersList)
+
+      const alowedLi = []
+
+      filtersList.map( elem => 
+      (elem.getAttribute("instrumentvalue").toLowerCase() === this.state.instrumentInput || this.state.instrumentInput === "") &&
+      (elem.getAttribute("genrevalue").toLowerCase() === this.state.genreInput || this.state.genreInput === "") &&
+      (elem.getAttribute("cityvalue").toLowerCase() === this.state.cityInput || this.state.cityInput === "")
+      ? alowedLi.push(elem.innerHTML) : null)
+      
+      const blocksList = document.getElementById("blocksList")
+      const readyFilteredAdsList = JSON.stringify(alowedLi).replace(/","/ , "")
+      blocksList.innerHTML = JSON.parse(readyFilteredAdsList)
+    } else {
+      const filters = this.state.adsLiList
+      const filtersList = [...filters]
+      console.log(filtersList)
+      // const filtersListFrom = this.state.adsLiList
+
+      const alowedLi = []
+
+      filtersList.map( elem => 
+      (elem.getAttribute("instrumentvalue").toLowerCase() === this.state.instrumentInput || this.state.instrumentInput === "") &&
+      (elem.getAttribute("genrevalue").toLowerCase() === this.state.genreInput || this.state.genreInput === "") &&
+      (elem.getAttribute("cityvalue").toLowerCase() === this.state.cityInput || this.state.cityInput === "")
+      ? alowedLi.push(elem.innerHTML) : null)
+      
+      const blocksList = document.getElementById("blocksList")
+      const readyFilteredAdsList = JSON.stringify(alowedLi).replace(/","/ , "")
+      blocksList.innerHTML = JSON.parse(readyFilteredAdsList)
+    }
+
+    console.log(this.state.adsLiList)
+    
+    //Animations
+    gsap.from(".singleBlock", {duration: 1.5, x: +100 });
+  }
+  handleChangeInstrument(event) {
+    this.setState({
+      instrumentInput: event.target.value.toLowerCase()
+    });
+  }
+  handleChangeGenre(event) {
+    this.setState({
+      genreInput: event.target.value.toLowerCase()
+    });
+  }
+  handleChangeCity(event) {
+    this.setState({
+      cityInput: event.target.value.toLowerCase()
+    });
   }
   render(){
-      console.log(this.state.wholeAds)
-      const enlistAds = this.state.wholeAds.map((elem) => <li key={elem["id"]}><Block forWho={elem[1]} dateOfPublished={elem[4]}
-       instrument={elem[5]} genre={elem[3]} fromWhen={elem[2]} city={elem[0]} /></li>)
+      const enlistAds = this.state.wholeAds.map((elem) => <li id="blockLi" key={elem["id"]} instrumentvalue={elem[5]} genrevalue={elem[3]} cityvalue={elem[0]}>
+        <Block forWho={elem[1]} dateOfPublished={elem[4]} instrument={elem[5]} genre={elem[3]} fromWhen={elem[2]} city={elem[0]} />
+        </li>)
       return(
           <div className="blocksHolder">
-              <form className="table-form" style={{display: "flex", paddingLeft: 20}}>
-                  <input type="text" className="filter-instrument" placeholder="Instrument" style={{width: 120, marginRight: 20, 
+              <form onSubmit={this.handleSubmit} onClick={this.setLiList} className="table-form" style={{display: "flex", paddingLeft: 20}}>
+                  <input id="instrumentInp" value={this.state.instrumentInput} type="text" onChange = {this.handleChangeInstrument} 
+                    className="filter-instrument" placeholder="Instrument" style={{width: 120, marginRight: 20, 
                     height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
-                  <input type="text" className="filter-Gatunek" placeholder="Gatunek" style={{width: 120, marginRight: 20, 
+                  <input id="genreInp" value={this.state.genreInput} type="text" onChange = {this.handleChangeGenre} 
+                    className="filter-Gatunek" placeholder="Gatunek" style={{width: 120, marginRight: 20, 
                     height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
-                  <input type="text" className="filter-Miasto" placeholder="Miasto" style={{width: 120, marginRight: 20, 
+                  <input id="cityInp" value={this.state.cityInput} type="text" onChange = {this.handleChangeCity} 
+                  className="filter-Miasto" placeholder="Miasto" style={{width: 120, marginRight: 20, 
                     height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
                   <input className="submitBtn" type="submit" value="Zatwierdź" style={{color: "#FFFFFFDE", width: "120px", 
                     borderRadius: "10px", outline: "none"}}/>
@@ -214,8 +282,10 @@ class Table extends React.Component {
                       <p style={{marginRight: 20, width: "20%"}}>Od kiedy</p>
                       <p style={{marginRight: 20, width: "20%"}}>Miasto</p>
                   </div>
-                  {this.state.showBlock ? <ul className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
+                  <div id="blocksHolderContainer">
+                  {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
                     {enlistAds}</ul> : null}
+                  </div>
               </div>
           </div>
       );
@@ -276,7 +346,7 @@ class App extends React.Component {
           <a href="#travel-top"><img alt="logo" src={logoStagePalls} className="nav__logo" /></a>
           <div className="megaphone">
             <img className="megaphone-icon" alt="megaphone-icon" src={megaphone} />
-            <button className="megaphone-link" onClick={this.showBlocks}>Wszytskie ogłoszenia</button>
+            <button className="megaphone-link" onClick={this.showBlocks}>Wszystkie ogłoszenia</button>
           </div>
           <div className="tune">
               <img className="tune-icon" alt="tune-icon" src={tune} /><button className="tune-link">Twoje ogłoszenia</button>
