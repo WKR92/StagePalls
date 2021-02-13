@@ -20,12 +20,24 @@ import timeIcon from './icons/Icon awesome-clock.svg';
 import purplePlusIcon from './icons//↳Color.svg';
 
 
+const adsUrl = "https://stagepalls.herokuapp.com/ads";
+const instrumentsUrl = "https://stagepalls.herokuapp.com/instruments";
+const citiesUrl = "https://stagepalls.herokuapp.com/cities";
+const genresUrl = "https://stagepalls.herokuapp.com/genres";
+const usersUrl = "https://stagepalls.herokuapp.com/users";
+const ctUrl = "https://stagepalls.herokuapp.com/genres"
+
+
+
+
 class AddBlock extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
 
       };
+  }
+  componentDidMount(){
   }
   render(){
       return(
@@ -102,20 +114,25 @@ class Block extends React.Component {
       super(props);
       
   }
+  componentDidMount(){
+      // console.log(this.props.listOfAds);
+  }
   render(){
+    //   adsData = this.props.listOfAds;
+    //   const enlistAds = adsData.map((elem) => <li key={elem.id.toString()}>elem</li>)
       return(
-          <div style={{marginLeft: 20}}>   
+          <div style={{marginLeft: 0}}>   
               <div className="block" style={{margin: "auto", display: "flex", marginTop: 5, backgroundColor: "#FFFFFF", marginBottom: "-1px"}}>
                   <div style={{width: "8px", backgroundColor: "#5F77D9"}}></div>
                   <div style={{margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center", width: "19%"}}>
-                      <data style={{marginLeft: "25%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>﻿9.12.2019</data>
-                      <p style={{marginLeft: "25%", marginTop: "0px", fontSize: "16px"}}>﻿szukam zespołu</p>
+                      <data style={{marginLeft: "25%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>{this.props.dateOfPublished}</data>
+                      <p style={{marginLeft: "25%", marginTop: "0px", fontSize: "16px"}}>{this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
                   </div>
                   <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", marginRight: 30, width: "1px"}}></div>
-                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>Keybord</p>
-                  <p style={{marginRight: 0, width: "20%", paddingTop: 6}}>POP</p>
-                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>12.10.2021</p>
-                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>Kraków</p>
+                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
+                  <p style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
+                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.fromWhen}</p>
+                  <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.city}</p>
               </div>
           </div>
       )
@@ -127,14 +144,30 @@ class Table extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          showBlock: true
+          showBlock: true,
+          wholeAds: []
       };
   }
+  y = []
   componentDidMount(){
+    fetch("https://stagepalls.herokuapp.com/ads")
+    .then((response) => response.json())
+    .then((data) => {
+      this.setState({
+        wholeAds: data.map(elem => [elem.city.city, elem.LookFor, elem.sineWhen.slice(0,10), elem.genres[0].genre,
+          elem.published_at.slice(0,10), elem.instruments[0].name])
+      })
+    })
+    
+
     gsap.from(".table-disc", {duration: 1.5, x: +100 });
-    gsap.from(".block", {duration: 1.5, x: +100 });
+    gsap.from(".singleBlock", {duration: 1.5, x: +100 });
+
   }
   render(){
+      console.log(this.state.wholeAds)
+      const enlistAds = this.state.wholeAds.map((elem) => <li key={elem["id"]}><Block forWho={elem[1]} dateOfPublished={elem[4]} instrument={elem[5]}
+       genre={elem[3]} fromWhen={elem[2]} city={elem[0]} /></li>)
       return(
           <div className="blocksHolder">
               <form className="table-form" style={{display: "flex", paddingLeft: 20}}>
@@ -151,26 +184,7 @@ class Table extends React.Component {
                       <p style={{marginRight: 20, width: "20%"}}>Od kiedy</p>
                       <p style={{marginRight: 20, width: "20%"}}>Miasto</p>
                   </div>
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
-                  {this.state.showBlock ? <Block /> : null}
+                  {this.state.showBlock ? <ul className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>{enlistAds}</ul> : null}
               </div>
           </div>
       );
@@ -189,9 +203,6 @@ class App extends React.Component {
       this.showBlocks = this.showBlocks.bind(this);
   }
   componentDidMount(){
-    console.log(this.state.blocks);
-    console.log(this.state.adForm);
-
     gsap.from(".nav__logo", {duration: 1, y: -100});
 
     var navLogoElem = document.querySelector('.nav__logo');
