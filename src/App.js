@@ -51,57 +51,78 @@ class AddBlock extends React.Component {
               <div style={{marginLeft: 40}}>
                   <div style={{display: "flex", marginBottom: 10}}>
                       <div>
-                          <input type="text" className="addCity" placeholder="Miasto" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                           backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addCity" placeholder="Miasto" style={{textIndent: 20, width: 300, 
+                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
+                          backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                           <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                       </div>
                       <div>
-                          <input type="text" className="addMail" placeholder="Adres email" style={{textIndent: 20,width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                          backgroundImage: `url("${mailIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addMail" placeholder="Adres email" style={{textIndent: 20,width: 300, 
+                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          borderRadius: 4, backgroundImage: `url("${mailIcon}")`, backgroundColor: "white", 
+                          backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                           <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
                       </div>
                   </div>
                   <div style={{display: "flex", marginBottom: 10}}>
                       <div>
-                          <input type="text" className="addGenre" placeholder="Gatunek" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                          backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addGenre" placeholder="Gatunek" style={{textIndent: 20, width: 300, 
+                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
+                          backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                           <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                       </div>
                       <div>
-                          <input type="text" className="addAddress" placeholder="Adres kontaktowy" style={{textIndent: 20,width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                          backgroundImage: `url("${phoneIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addAddress" placeholder="Adres kontaktowy" style={{textIndent: 20, 
+                          width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                          border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
+                          backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
+                          backgroundClip: "border-box"}}/>
                           <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
                       </div>
                   </div>
                   <div style={{display: "flex", marginBottom: 10}}>
                       <div>
-                          <input type="text" className="addInstrument" placeholder="Instrument" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                          backgroundImage: `url("${guitarIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addInstrument" placeholder="Instrument" style={{textIndent: 20, 
+                          width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                          border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
+                          backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
+                          backgroundClip: "border-box"}}/>
                           <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                       </div>
                       <div>
-                          <input type="text" className="addComment" placeholder="Komentarz" style={{textIndent: 20,width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                          backgroundImage: `url("${messageIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addComment" placeholder="Komentarz" style={{textIndent: 20, 
+                          width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                          border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
+                          backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
+                          backgroundClip: "border-box"}}/>
                           <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
                       </div>
                   </div>
                   <div style={{display: "flex", marginBottom: 20}}>
                       <div>
-                          <input type="text" className="addDate" placeholder="Od kiedy" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", borderRadius: 4,
-                          backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                          <input type="text" className="addDate" placeholder="Od kiedy" style={{textIndent: 20, width: 300, 
+                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          borderRadius: 4, backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
+                          backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                           <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                       </div>
                   </div>
               </div>
               <div className="addMusic" style={{marginBottom: 40, marginLeft: 40}}>
                   <div style={{display: "flex"}}>
-                      <p style={{color: "#6200EE", fontFamily: "Roboto", fontSize: 15, border: "none", paddingLeft: 2}}>DODAJ UTWÓR PODGLĄDOWY</p>
+                      <p style={{color: "#6200EE", fontFamily: "Roboto", fontSize: 15, border: "none", paddingLeft: 2}}>
+                        DODAJ UTWÓR PODGLĄDOWY</p>
                   </div>
                   <input type="file" id="musicInp" name="musicInp" accpet="" style={{paddingLeft: 2, marginRight: 10}} />
               </div>
-              <div className="addAdv" style={{display: "inline-block", marginLeft: 40, backgroundColor: "#6200EE", borderRadius: "4px", alignItems: "center"}}>
-                  <input type="submit" htmlFor="musicInp" value="DODAJ OGŁOSZENIE" style={{fontFamily: "Roboto", fontSize: 18, color: "#FFFFFF", paddingLeft: 35, paddingRight: 15, height: 30, border: "none", backgroundColor: "#6200EE", borderRadius: 4,
-                   backgroundImage: `url("${purplePlusIcon}")`, backgroundPosition: "5% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}} />
+              <div className="addAdv" style={{display: "inline-block", marginLeft: 40, backgroundColor: "#6200EE", 
+              borderRadius: "4px", alignItems: "center"}}>
+                  <input type="submit" htmlFor="musicInp" value="DODAJ OGŁOSZENIE" style={{fontFamily: "Roboto", 
+                  fontSize: 18, color: "#FFFFFF", paddingLeft: 35, paddingRight: 15, height: 30, border: "none", 
+                  backgroundColor: "#6200EE", borderRadius: 4, backgroundImage: `url("${purplePlusIcon}")`, 
+                  backgroundPosition: "5% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}} />
               </div>
           </form>
       )
@@ -122,13 +143,17 @@ class Block extends React.Component {
     //   const enlistAds = adsData.map((elem) => <li key={elem.id.toString()}>elem</li>)
       return(
           <div style={{marginLeft: 0}}>   
-              <div className="block" style={{margin: "auto", display: "flex", marginTop: 5, backgroundColor: "#FFFFFF", marginBottom: "-1px"}}>
+              <div className="block" style={{margin: "auto", display: "flex", marginTop: 5, backgroundColor: "#FFFFFF", 
+              marginBottom: "-1px"}}>
                   <div style={{width: "8px", backgroundColor: "#5F77D9"}}></div>
                   <div style={{margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center", width: "19%"}}>
-                      <data style={{marginLeft: "25%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>{this.props.dateOfPublished}</data>
-                      <p style={{marginLeft: "25%", marginTop: "0px", fontSize: "16px"}}>{this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
+                      <data style={{marginLeft: "25%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
+                        {this.props.dateOfPublished}</data>
+                      <p style={{marginLeft: "25%", marginTop: "0px", fontSize: "16px"}}>
+                        {this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
                   </div>
-                  <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", marginRight: 30, width: "1px"}}></div>
+                  <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", 
+                  marginRight: 30, width: "1px"}}></div>
                   <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
                   <p style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
                   <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.fromWhen}</p>
@@ -166,25 +191,31 @@ class Table extends React.Component {
   }
   render(){
       console.log(this.state.wholeAds)
-      const enlistAds = this.state.wholeAds.map((elem) => <li key={elem["id"]}><Block forWho={elem[1]} dateOfPublished={elem[4]} instrument={elem[5]}
-       genre={elem[3]} fromWhen={elem[2]} city={elem[0]} /></li>)
+      const enlistAds = this.state.wholeAds.map((elem) => <li key={elem["id"]}><Block forWho={elem[1]} dateOfPublished={elem[4]}
+       instrument={elem[5]} genre={elem[3]} fromWhen={elem[2]} city={elem[0]} /></li>)
       return(
           <div className="blocksHolder">
               <form className="table-form" style={{display: "flex", paddingLeft: 20}}>
-                  <input type="text" className="filter-instrument" placeholder="Instrument" style={{width: 120, marginRight: 20, height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
-                  <input type="text" className="filter-Gatunek" placeholder="Gatunek" style={{width: 120, marginRight: 20, height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
-                  <input type="text" className="filter-Miasto" placeholder="Miasto" style={{width: 120, marginRight: 20, height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
-                  <input className="submitBtn" type="submit" value="Zatwierdź" style={{color: "#FFFFFFDE", width: "120px", borderRadius: "10px", outline: "none"}}/>
+                  <input type="text" className="filter-instrument" placeholder="Instrument" style={{width: 120, marginRight: 20, 
+                    height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
+                  <input type="text" className="filter-Gatunek" placeholder="Gatunek" style={{width: 120, marginRight: 20, 
+                    height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
+                  <input type="text" className="filter-Miasto" placeholder="Miasto" style={{width: 120, marginRight: 20, 
+                    height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
+                  <input className="submitBtn" type="submit" value="Zatwierdź" style={{color: "#FFFFFFDE", width: "120px", 
+                    borderRadius: "10px", outline: "none"}}/>
               </form>
               <div>
-                  <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", paddingTop: 20, justifyContent: "space-evenly"}}>
+                  <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", paddingTop: 20, 
+                  justifyContent: "space-evenly"}}>
                       <p style={{marginRight: 20, visibility: "hidden", width: "20%"}}>Puste</p>
                       <p style={{marginRight: 20, width: "20%"}}>Instrument</p>
                       <p style={{marginRight: 20, width: "20%"}}>Gatunek</p>
                       <p style={{marginRight: 20, width: "20%"}}>Od kiedy</p>
                       <p style={{marginRight: 20, width: "20%"}}>Miasto</p>
                   </div>
-                  {this.state.showBlock ? <ul className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>{enlistAds}</ul> : null}
+                  {this.state.showBlock ? <ul className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
+                    {enlistAds}</ul> : null}
               </div>
           </div>
       );
@@ -244,7 +275,8 @@ class App extends React.Component {
         <nav>
           <a href="#travel-top"><img alt="logo" src={logoStagePalls} className="nav__logo" /></a>
           <div className="megaphone">
-            <img className="megaphone-icon" alt="megaphone-icon" src={megaphone} /><button className="megaphone-link" onClick={this.showBlocks}>Wszytskie ogłoszenia</button>
+            <img className="megaphone-icon" alt="megaphone-icon" src={megaphone} />
+            <button className="megaphone-link" onClick={this.showBlocks}>Wszytskie ogłoszenia</button>
           </div>
           <div className="tune">
               <img className="tune-icon" alt="tune-icon" src={tune} /><button className="tune-link">Twoje ogłoszenia</button>
@@ -253,7 +285,8 @@ class App extends React.Component {
               <img className="lupe-icon" alt="lupe-icon" src={lupe} /><button className="lupe-link">Szukaj ogłoszenia</button>
           </div>
           <div className="plus">
-              <img className="plus-icon" alt="plus-icon" src={plus} /><button className="plus-link" onClick={this.showAddForm}>Dodaj ogloszenie</button>
+              <img className="plus-icon" alt="plus-icon" src={plus} />
+              <button className="plus-link" onClick={this.showAddForm}>Dodaj ogloszenie</button>
           </div>
           <div className="bust">
               <img className="bust-icon" alt="bust-icon"  src={bust} /><button className="bust-link">Twój profil</button>
@@ -266,7 +299,8 @@ class App extends React.Component {
             </div>
             <div className="main__description">
                 <h1 className="main__description__title">Znajdź muzyka lub zespół w szybki i łatwy sposób.</h1>
-                <p className="main__description__sub-title">Skorzystaj z wyszukiwarki by dodać myzuka lub zespół albo dodaj własne ogłoszenie.</p>
+                <p className="main__description__sub-title">Skorzystaj z wyszukiwarki by dodać myzuka lub zespół 
+                albo dodaj własne ogłoszenie.</p>
             </div>
             <div className="main__table">
               {this.state.blocks ? <Table /> : null}
