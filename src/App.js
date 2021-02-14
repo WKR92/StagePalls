@@ -34,32 +34,98 @@ class AddBlock extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-
+        radio: "",
+        city: "",
+        mail: "",
+        genre: "",
+        address: "",
+        instrument: "",
+        comment: "",
+        siinceWhen: new Date(),
+        musicFile: []
       };
+      this.handleRadio = this.handleRadio.bind(this)
+      this.handleChangeCity = this.handleChangeCity.bind(this)
+      this.handleChangeMail = this.handleChangeMail.bind(this)
+      this.handleChangeGenre = this.handleChangeGenre.bind(this)
+      this.handleChangeAddress = this.handleChangeAddress.bind(this)
+      this.handleChangeInstrument = this.handleChangeInstrument.bind(this)
+      this.handleChangeComment = this.handleChangeComment.bind(this)
+      this.handleChangeSinceWhen = this.handleChangeSinceWhen.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
   }
   componentDidMount(){
+
+  }
+  handleRadio(event) {
+    this.setState({
+      radio: event.target.value
+    });
+  }
+  handleChangeCity(event) {
+    this.setState({
+      city: event.target.value
+    });
+  }
+  handleChangeMail(event) {
+    this.setState({
+      mail: event.target.value
+    });
+  }
+  handleChangeGenre(event) {
+    this.setState({
+      genre: event.target.value
+    });
+  }
+  handleChangeAddress(event) {
+    this.setState({
+      address: event.target.value
+    });
+  }
+  handleChangeInstrument(event) {
+    this.setState({
+      instrument: event.target.value
+    });
+  }
+  handleChangeComment(event) {
+    this.setState({
+      comment: event.target.value
+    });
+  }
+  handleChangeSinceWhen(event) {
+    this.setState({
+      sineWhen: event.target.value
+    });
+  }
+  handleSubmit(event){
+    event.preventDefault();
+
+    alert("Values to db: " + this.state.radio + " " + this.state.city + " " + this.state.mail + " " + this.state.genre + " " + this.state.address +
+    " " + this.state.instrument + " " + this.state.comment + " ")
   }
   render(){
       return(
-          <form>
+          <form onSubmit={this.handleSubmit}>
               <div style={{marginLeft: 40, marginBottom: 20}}>
-                  <input type="radio" id="Szukam zespołu" value="band" name="lookingFor" />
+                  <input onChange = {this.handleRadio} value="band" type="radio" id="Szukam zespołu" name="lookingFor" />
                   <label htmlFor="Szukam zespołu">Szukam zespołu</label>
-                  <input type="radio" id="Szukam muzyka" value="musician" name="lookingFor" style={{marginLeft: 20}} />
+                  <input onChange = {this.handleRadio} value="musician" type="radio" id="Szukam muzyka" name="lookingFor" style={{marginLeft: 20}} />
                   <label htmlFor="Szukam muzyka">Szukam muzyka</label>
               </div>
               <div style={{marginLeft: 40}}>
                   <div style={{display: "flex", marginBottom: 10}}>
                       <div>
-                          <input type="text" className="addCity" placeholder="Miasto" style={{textIndent: 20, width: 300, 
-                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          <input type="text" onChange = {this.handleChangeCity} className="addCity" placeholder="Miasto"
+                          value={this.state.city} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
+                          outline: "none", border: "1px solid #0000001F", 
                           borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
                           backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                           <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                       </div>
                       <div>
-                          <input type="text" className="addMail" placeholder="Adres email" style={{textIndent: 20,width: 300, 
-                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          <input type="email" onChange = {this.handleChangeMail} className="addMail" placeholder="Adres email"
+                          value={this.state.mail} style={{textIndent: 20,width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                          border: "1px solid #0000001F", 
                           borderRadius: 4, backgroundImage: `url("${mailIcon}")`, backgroundColor: "white", 
                           backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                           <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
@@ -67,46 +133,52 @@ class AddBlock extends React.Component {
                   </div>
                   <div style={{display: "flex", marginBottom: 10}}>
                       <div>
-                          <input type="text" className="addGenre" placeholder="Gatunek" style={{textIndent: 20, width: 300, 
-                          marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                          <input type="text" onChange = {this.handleChangeGenre} className="addGenre" placeholder="Gatunek"
+                          value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
+                          textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                           borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
                           backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
-                          <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
+                          <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                       </div>
                       <div>
-                          <input type="text" className="addAddress" placeholder="Adres kontaktowy" style={{textIndent: 20, 
+                          <input type="text" onChange = {this.handleChangeAddress} className="addAddress"
+                          placeholder="Adres kontaktowy" value={this.state.address} style={{textIndent: 20, 
                           width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                           border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                           backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                           backgroundClip: "border-box"}}/>
-                          <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
+                          <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz numer kontaktowy</p>
                       </div>
                   </div>
                   <div style={{display: "flex", marginBottom: 10}}>
                       <div>
-                          <input type="text" className="addInstrument" placeholder="Instrument" style={{textIndent: 20, 
+                          <input type="text" onChange = {this.handleChangeInstrument} className="addInstrument"
+                          placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
                           width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                           border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
                           backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                           backgroundClip: "border-box"}}/>
-                          <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
+                          <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Instrument na którym grasz</p>
                       </div>
                       <div>
-                          <input type="text" className="addComment" placeholder="Komentarz" style={{textIndent: 20, 
+                          <input type="text" onChange = {this.handleChangeComment} className="addComment"
+                          placeholder="Komentarz" value={this.state.comment} style={{textIndent: 20, 
                           width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                           border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
                           backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                           backgroundClip: "border-box"}}/>
-                          <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
+                          <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Dodaj komentarz</p>
                       </div>
                   </div>
                   <div style={{display: "flex", marginBottom: 20}}>
                       <div>
-                          <input type="text" className="addDate" placeholder="Od kiedy" style={{textIndent: 20, width: 300, 
+                          <input type="date" onChange = {this.handleChangeSinceWhen} className="addDate" 
+                          placeholder="Od kiedy" style={{textIndent: 10, width: 300, 
                           marginRight: 20, height: 46, textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
-                          borderRadius: 4, backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
-                          backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
-                          <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
+                          borderRadius: 4, }}/>
+                          {/* backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
+                          backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box" */}
+                          <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Od kiedy chciałbyś zacząć grać</p>
                       </div>
                   </div>
               </div>
