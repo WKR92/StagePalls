@@ -8,6 +8,7 @@ import messageIcon from './icons//Trailing icon.svg';
 import timeIcon from './icons/Icon awesome-clock.svg';
 import purplePlusIcon from './icons//↳Color.svg';
 import clickSound from './icons/Tiny Button Push-SoundBible.com-513260752.mp3'
+import axios from 'axios';
 
 export default  class AddBlock extends React.Component {
     constructor(props) {
@@ -17,21 +18,53 @@ export default  class AddBlock extends React.Component {
           city: "",
           mail: "",
           genre: "",
-          address: "",
+          phoneNumber: "",
           instrument: "",
           comment: "",
           sinceWhen: 'DD/MM/YYYY',
-          musicFile: []
+          musicFile: [],
+          apiCities: [],
+          apiInstruments: [],
+          apiGenres: [],
+          apiPersonalData: [],
         };
         this.handleRadio = this.handleRadio.bind(this)
         this.handleChangeCity = this.handleChangeCity.bind(this)
         this.handleChangeMail = this.handleChangeMail.bind(this)
         this.handleChangeGenre = this.handleChangeGenre.bind(this)
-        this.handleChangeAddress = this.handleChangeAddress.bind(this)
+        this.handleChangePhoneNumber = this.handleChangePhoneNumber.bind(this)
         this.handleChangeInstrument = this.handleChangeInstrument.bind(this)
         this.handleChangeComment = this.handleChangeComment.bind(this)
         this.handleChangeSinceWhen = this.handleChangeSinceWhen.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+    componentDidMount(){
+      
+      //Get Cities Data
+      fetch("https://stagepalls.herokuapp.com/cities")
+      .then(response => response.json())
+      // .then(data => console.log(data))
+      .then(data => this.setState({
+        apiCities: data.map(elem => [elem.id, elem.city])
+      }))
+
+      //Get Genres Data
+      fetch("https://stagepalls.herokuapp.com/genres")
+      .then(response => response.json())
+      // .then(data => data.map(elem => console.log(elem.genre)))
+      .then(data => this.setState({
+        apiGenres: data.map(elem => [elem.id, elem.genre]),
+      }))
+
+      //Get Instruments Data
+      fetch("https://stagepalls.herokuapp.com/instruments")
+      .then(response => response.json())
+      .then(data => this.setState({
+        apiInstruments: data.map(elem => [elem.id, elem.name]),
+      }))
+
+      //Get Personal Data
+      //This will be working trought autentication process
     }
     handleRadio(event) {
       this.setState({
@@ -53,9 +86,9 @@ export default  class AddBlock extends React.Component {
         genre: event.target.value
       });
     }
-    handleChangeAddress(event) {
+    handleChangePhoneNumber(event) {
       this.setState({
-        address: event.target.value
+        phoneNumber: event.target.value
       });
     }
     handleChangeInstrument(event) {
@@ -76,12 +109,53 @@ export default  class AddBlock extends React.Component {
     handleSubmit(event){
       event.preventDefault();
       new Audio(clickSound).play();
-  
-      alert("Values to db: " + this.state.radio + " " + this.state.city + " " + this.state.mail + " " + this.state.genre + " " + this.state.address +
-      " " + this.state.instrument + " " + this.state.comment + " " + this.state.sinceWhen)
-  
-  
-      // force page to reload so main component can display updated package of blocks
+
+      const cityTofind = this.state.city;
+      function findCity(elem){
+        return elem.includes(cityTofind)
+      }
+      const ChosenCity = this.state.apiCities.filter(findCity);
+
+
+      const instrumentTofind = this.state.instrument;
+      function findInstrument(elem){
+        return elem.includes(instrumentTofind)
+      }
+      const ChosenInstrument = this.state.apiInstruments.filter(findInstrument);
+
+
+      const genreTofind = this.state.genre;
+      function findGenre(elem){
+        return elem.includes(genreTofind)
+      }
+      const ChosenGenre = this.state.apiGenres.filter(findGenre);
+      
+
+      const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+         }
+    if(
+      axios
+        .post('https://stagepalls.herokuapp.com/ads', {
+          "city": { id: ChosenCity[0][0]},
+          LookFor: this.state.radio,
+          sinceWhen: this.state.sinceWhen,
+          "genres": [{id: ChosenGenre[0][0]}],
+          "users_permissions_user": {id: 1}, //email
+          "instruments": [{id: ChosenInstrument[0][0]}],
+          description: this.state.comment,
+        }, {headers: headers})
+        .then(res => {
+          console.log(`statusCode: ${res.statusCode}`)
+          console.log(res)
+        })
+        .catch(error => {
+          console.error(error)
+      })){alert("Twoje muzyczne ogloszenie zostało dodane pomyślnie");
+          window.location.reload(false)
+          }else{alert("Coś poszło nie tak, spróbuj jeszcze raz")}
+          
       // window.location.reload(false)
     }
     render(){
@@ -96,11 +170,23 @@ export default  class AddBlock extends React.Component {
                 <div className="inputFields" style={{marginLeft: 40}}>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input required type="text" onChange = {this.handleChangeCity} className="addCity" placeholder="Miasto"
-                            value={this.state.city} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
+                            <input required onChange = {this.handleChangeCity} className="addCity" placeholder="Miasto"
+                            value={this.state.city} list="miastaDoWyboru" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                            <datalist id="miastaDoWyboru">
+                            {this.state.apiCities.map(elem => {
+                                return (
+                                  <option value={elem[1]}></option>
+                                )
+                              })}
+                            </datalist>
+                            {/* <input type="text" onChange = {this.handleChangeCity} className="addCity" placeholder="Miasto"
+                            value={this.state.city} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
+                            outline: "none", border: "1px solid #0000001F", 
+                            borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
+                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/> */}
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                         </div>
                         <div>
@@ -114,16 +200,28 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input required type="text" onChange = {this.handleChangeGenre} className="addGenre" placeholder="Gatunek"
+                            <input required onChange = {this.handleChangeGenre} list="gatunkiDoWyboru" className="addGenre" placeholder="Gatunek"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                            <datalist id="gatunkiDoWyboru">
+                              {this.state.apiGenres.map(elem => {
+                                  return (
+                                    <option value={elem[1]}></option>
+                                  )
+                                })}
+                            </datalist>
+                            {/* <input type="text" onChange = {this.handleChangeGenre} className="addGenre" placeholder="Gatunek"
+                            value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
+                            textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
+                            borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
+                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/> */}
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                         </div>
                         <div>
-                            <input required type="text" onChange = {this.handleChangeAddress} className="addAddress"
-                            placeholder="Adres kontaktowy" value={this.state.address} style={{textIndent: 20, 
+                            <input required type="text" onChange = {this.handleChangePhoneNumber} className="addphoneNumber"
+                            placeholder="Numer kontaktowy" value={this.state.phoneNumber} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
@@ -133,12 +231,25 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input required type="text" onChange = {this.handleChangeInstrument} className="addInstrument"
+                            <input required list="instrumentDoWyboru" onChange = {this.handleChangeInstrument} className="addInstrument"
                             placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box"}}/>
+                            <datalist id="instrumentDoWyboru">
+                              {this.state.apiInstruments.map(elem => {
+                                  return (
+                                    <option value={elem[1]}></option>
+                                  )
+                                })}
+                            </datalist>
+                            {/* <input type="text" onChange = {this.handleChangeInstrument} className="addInstrument"
+                            placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
+                            width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                            border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
+                            backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
+                            backgroundClip: "border-box"}}/> */}
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Instrument na którym grasz</p>
                         </div>
                         <div>

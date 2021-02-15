@@ -124,9 +124,9 @@ export default class Table extends React.Component {
                     </div>
                     <div className="blocksHolderContainer">
                     {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
-                      {this.state.adsLiList}</ul> : null}
+                      {this.state.adsLiList}</ul> : this.state.showFilteredBlocks ? null : <p>Ładowanie...</p>}
                     {this.state.showFilteredBlocks ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
-                      {this.state.filteredAds}</ul> : null}
+                      {this.state.filteredAds}</ul> : this.state.adsLiList ? null : <p>Ładowanie...</p>}
                     </div>
                 </div>
             </div>

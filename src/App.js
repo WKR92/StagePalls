@@ -12,7 +12,6 @@ import plus from './icons/icon-content-add_24px.svg';
 import bust from './icons/Icon material-person.svg';
 import AddBlock from './makeAdForm'
 import Table from './filtersAndAdsTable'
-import axios from 'axios';
 
 
 const adsUrl = "https://stagepalls.herokuapp.com/ads";
@@ -33,15 +32,7 @@ class App extends React.Component {
       this.showAddForm = this.showAddForm.bind(this);
       this.showBlocks = this.showBlocks.bind(this);
   }
-  componentDidMount(){
-
-    // module.exports = async () => {
-    //   const { data } = await axios.get('https://hub.docker.com/v2/repositories/strapi/strapi/');
-
-    //   console.log(data);
-    // };
-
-    
+  componentDidMount(){    
     gsap.from(".nav__logo", {duration: 1, y: -100});
 
     var navLogoElem = document.querySelector('.nav__logo');

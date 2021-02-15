@@ -1,5 +1,5 @@
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background: transparent;
+input::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 html {
