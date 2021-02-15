@@ -33,7 +33,7 @@ nav .nav__logo {
 nav .megaphone {
   display: flex;
   margin-bottom: 20px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 nav .megaphone .megaphone-icon {
@@ -61,7 +61,7 @@ nav .megaphone .megaphone-link:hover {
 nav .tune {
   display: flex;
   margin-bottom: 20px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 nav .tune .tune-icon {
@@ -89,7 +89,7 @@ nav .tune .tune-link:hover {
 nav .lupe {
   display: flex;
   margin-bottom: 20px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 nav .lupe .lupe-icon {
@@ -117,7 +117,7 @@ nav .lupe .lupe-link:hover {
 nav .plus {
   display: flex;
   margin-bottom: 20px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 nav .plus .plus-icon {
@@ -145,7 +145,7 @@ nav .plus .plus-link:hover {
 nav .bust {
   display: flex;
   margin-bottom: 20px;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 nav .bust .bust-icon {
