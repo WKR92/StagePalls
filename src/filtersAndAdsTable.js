@@ -4,6 +4,7 @@ import gsap from "gsap";
 import clickSound from './icons/Tiny Button Push-SoundBible.com-513260752.mp3'
 
 
+
 export default class Table extends React.Component {
     constructor(props) {
         super(props);
@@ -80,7 +81,6 @@ export default class Table extends React.Component {
     //   }
     // }
     handleSubmit(event){
-      console.log(this.state.adsLiList[0])
       event.preventDefault();
       new Audio(clickSound).play();
       const alowedLi = []

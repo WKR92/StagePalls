@@ -185,15 +185,15 @@ export default  class AddBlock extends React.Component {
                 <div className="inputFields" style={{marginLeft: 40}}>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select required onChange = {this.handleChangeCity} className="addCity selectpicker" placeholder="Miasto"
-                            value={this.state.city} list="miastaDoWyboru" style={{textIndent: 20, width: 305, marginRight: 20, height: 46, textAlign: "stretch", 
+                            <select form="addBlockFormDiv" required onChange = {this.handleChangeCity} className="addCity selectpicker"
+                            value={this.state.city} style={{textIndent: 20, width: 305, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                             {/* <select id="miastaDoWyboru"> */}
                             {this.state.apiCities.map(elem => {
                                 return (
-                                  <option style={{}} value={elem[1]}>{elem[1]}</option>
+                                  <option selected={elem[1]} style={{}} value={elem[1]}>{elem[1]}</option>
                                 )
                               })}
                             </select >
@@ -215,14 +215,14 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select required onChange = {this.handleChangeGenre} list="gatunkiDoWyboru" className="addGenre" placeholder="Gatunek"
+                            <select form="addBlockFormDiv" required onChange = {this.handleChangeGenre} className="addGenre"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                               {this.state.apiGenres.map(elem => {
                                   return (
-                                    <option value={elem[1]}>{elem[1]}</option>
+                                    <option selected={elem[1]} value={elem[1]} />
                                   )
                                 })}
                             </select>
@@ -234,8 +234,9 @@ export default  class AddBlock extends React.Component {
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                         </div>
                         <div>
-                            <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber} className="addphoneNumber"
-                            placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} style={{textIndent: 20, 
+                            <input type="tel" maxlength="9" minLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
+                            className="addphoneNumber" placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} 
+                            style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
@@ -245,8 +246,8 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select required list="instrumentDoWyboru" onChange = {this.handleChangeInstrument} className="addInstrument"
-                            placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
+                            <select form="addBlockFormDiv" required onChange = {this.handleChangeInstrument} className="addInstrument"
+                            value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
@@ -254,7 +255,7 @@ export default  class AddBlock extends React.Component {
                             {/* <datalist id="instrumentDoWyboru"> */}
                               {this.state.apiInstruments.map(elem => {
                                   return (
-                                    <option value={elem[1]}>{elem[1]}</option>
+                                    <option selected={elem[1]} value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
                             </select>
