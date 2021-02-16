@@ -158,7 +158,8 @@ export default  class AddBlock extends React.Component {
           "users_permissions_user": {id: 1}, //email
           "instruments": [{id: ChosenInstrument[0][0]}],
           description: this.state.comment,
-          email: this.state.mail
+          email: this.state.mail,
+          telephone: this.state.phoneNumber
         }, {headers: headers})
         .then(res => {
           console.log(`statusCode: ${res.statusCode}`)
@@ -233,13 +234,13 @@ export default  class AddBlock extends React.Component {
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                         </div>
                         <div>
-                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" onChange = {this.handleChangePhoneNumber} className="addphoneNumber"
-                            placeholder="000-000-000 (opcjonalnie)" value={this.state.phoneNumber} style={{textIndent: 20, 
+                            <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber} className="addphoneNumber"
+                            placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box"}}/>
-                            <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz numer kontaktowy (format: 123-456-789)</p>
+                            <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz numer kontaktowy (format: 123456789)</p>
                         </div>
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>

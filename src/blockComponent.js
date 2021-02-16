@@ -22,10 +22,10 @@ class HiddenArea extends React.Component{
             borderRight: "transparent"}}>
                 <div style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid #5F77D9",
                 borderTop: "2.85px solid #5F77D9"}}>
-                    <p style={{marginBottom:0, paddingTop:5, marginLeft: "25%", fontSize: 14}}>Email:</p>
-                    <p style={{marginTop:5, marginLeft: "25%",marginBottom:0, color: "#be3144"}}>{this.state.mail}</p>
-                    <p style={{marginBottom:0, marginLeft: "25%", fontSize: 14}}>Numer tel:</p>
-                    <p className="telP" style={{marginTop:5, marginLeft: "25%", color: "#be3144"}}>{this.state.phoneNumber}</p>
+                    <p style={{marginBottom:0, paddingTop:5, marginLeft: "5%", fontSize: 14}}>Email:</p>
+                    <p style={{marginTop:5, marginLeft: "8%",marginBottom:0, color: "#be3144", overflow: "auto"}}>{this.state.mail}</p>
+                    <p style={{marginBottom:0, marginLeft: "5%", fontSize: 14}}>Numer tel:</p>
+                    <p className="telP" style={{marginTop:5, marginLeft: "8%", color: "#be3144", overflow: "auto"}}>{this.state.phoneNumber}</p>
                 </div>
                 <div style={{width: "81%", display: "flex", border: "2px solid #EFEFEF"}}>
                     <p style={{paddingLeft: 15, marginRight: 20, paddingTop: 1}}>Opis: </p>
