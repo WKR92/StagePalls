@@ -158,6 +158,7 @@ export default  class AddBlock extends React.Component {
           "users_permissions_user": {id: 1}, //email
           "instruments": [{id: ChosenInstrument[0][0]}],
           description: this.state.comment,
+          email: this.state.mail
         }, {headers: headers})
         .then(res => {
           console.log(`statusCode: ${res.statusCode}`)
@@ -183,7 +184,7 @@ export default  class AddBlock extends React.Component {
                 <div className="inputFields" style={{marginLeft: 40}}>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select  required onChange = {this.handleChangeCity} className="addCity selectpicker" placeholder="Miasto"
+                            <select required onChange = {this.handleChangeCity} className="addCity selectpicker" placeholder="Miasto"
                             value={this.state.city} list="miastaDoWyboru" style={{textIndent: 20, width: 305, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
@@ -213,18 +214,17 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input type="text" required onChange = {this.handleChangeGenre} list="gatunkiDoWyboru" className="addGenre" placeholder="Gatunek"
+                            <select required onChange = {this.handleChangeGenre} list="gatunkiDoWyboru" className="addGenre" placeholder="Gatunek"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
-                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
-                            <datalist id="gatunkiDoWyboru">
+                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                               {this.state.apiGenres.map(elem => {
                                   return (
-                                    <option value={elem[1]}></option>
+                                    <option value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
-                            </datalist>
+                            </select>
                             {/* <input type="text" onChange = {this.handleChangeGenre} className="addGenre" placeholder="Gatunek"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
@@ -244,19 +244,19 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input type="text" required list="instrumentDoWyboru" onChange = {this.handleChangeInstrument} className="addInstrument"
+                            <select required list="instrumentDoWyboru" onChange = {this.handleChangeInstrument} className="addInstrument"
                             placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
-                            backgroundClip: "border-box"}}/>
-                            <datalist id="instrumentDoWyboru">
+                            backgroundClip: "border-box"}}>
+                            {/* <datalist id="instrumentDoWyboru"> */}
                               {this.state.apiInstruments.map(elem => {
                                   return (
-                                    <option value={elem[1]}></option>
+                                    <option value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
-                            </datalist>
+                            </select>
                             {/* <input type="text" onChange = {this.handleChangeInstrument} className="addInstrument"
                             placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
