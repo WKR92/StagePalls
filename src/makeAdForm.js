@@ -75,14 +75,6 @@ export default  class AddBlock extends React.Component {
       this.setState({
         radio: event.target.value
       });
-
-      const ChosenCity = this.state.apiCities.includes(event.target.value);
-      console.log(ChosenCity)
-
-      if(ChosenCity === false){
-        const addCity = document.querySelector(".addCity");
-        addCity.style["border"] = "solid 1px red";
-      }
     }
     handleChangeCity(event) {
       this.setState({
@@ -129,12 +121,13 @@ export default  class AddBlock extends React.Component {
       }
       const ChosenCity = this.state.apiCities.filter(findCity);
 
-      if(ChosenCity.length < 1){
-        const addCity = document.querySelector(".addCity");
-        addCity.style["border"] = "solid 1px red";
-        alert("Możesz wybrać miasto tylko spośród tych dostępnych w formularzu");
-        return;
-      }
+
+      // if(ChosenCity.length < 1){
+      //   const addCity = document.querySelector(".addCity");
+      //   addCity.style["border"] = "solid 1px red";
+      //   alert("Możesz wybrać miasto tylko spośród tych dostępnych w formularzu");
+      //   return;
+      // }
 
 
       const instrumentTofind = this.state.instrument;
@@ -288,7 +281,7 @@ export default  class AddBlock extends React.Component {
                             style={{textIndent: 20, width: 627, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
-                            backgroundClip: "border-box", fontFamily: "Arial"}}/>
+                            backgroundClip: "border-box", fontFamily: "Arial", resize: "none"}}/>
                             <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Dodaj komentarz</p>
                         </div>
                     </div>

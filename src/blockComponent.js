@@ -29,7 +29,7 @@ class HiddenArea extends React.Component{
                 </div>
                 <div style={{width: "81%", display: "flex", border: "2px solid #EFEFEF"}}>
                     <p style={{paddingLeft: 15, marginRight: 20, paddingTop: 1}}>Opis: </p>
-                    <p style={{width:"90%"}}>{this.state.comment}</p>
+                    <p style={{width:"90%", overflow: "auto"}}>{this.state.comment}</p>
                 </div>          
             </div>
         )
