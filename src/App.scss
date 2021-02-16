@@ -25,10 +25,18 @@
     }
 }
 
-input::-webkit-calendar-picker-indicator {
+input[type="text"]::-webkit-calendar-picker-indicator {
     display: none;
   }
-// input[type="date"]::-webkit-calendar-picker-indicator { background: transparent;}
+input[type="date"]::-webkit-calendar-picker-indicator { 
+    background: transparent}
+input[type="date"]::-webkit-calendar-picker-indicator { 
+     margin-right: 14px}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+}
 
 
 html {

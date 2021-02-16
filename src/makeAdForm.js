@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+// import Select from 'react-select'
 import localisationIcon from './icons/Icon material-location-on.svg'
 import mailIcon from './icons/Icon material-mail.svg';
 import notesIcon from './icons/Icon ionic-md-musical-notes.svg';
@@ -9,6 +10,10 @@ import timeIcon from './icons/Icon awesome-clock.svg';
 import purplePlusIcon from './icons//↳Color.svg';
 import clickSound from './icons/Tiny Button Push-SoundBible.com-513260752.mp3'
 import axios from 'axios';
+import $ from 'jquery'; 
+// React.Bootstrap = require('react-bootstrap');
+// React.Bootstrap.Select = require('react-bootstrap-select');
+
 
 export default  class AddBlock extends React.Component {
     constructor(props) {
@@ -70,6 +75,14 @@ export default  class AddBlock extends React.Component {
       this.setState({
         radio: event.target.value
       });
+
+      const ChosenCity = this.state.apiCities.includes(event.target.value);
+      console.log(ChosenCity)
+
+      if(ChosenCity === false){
+        const addCity = document.querySelector(".addCity");
+        addCity.style["border"] = "solid 1px red";
+      }
     }
     handleChangeCity(event) {
       this.setState({
@@ -116,6 +129,13 @@ export default  class AddBlock extends React.Component {
       }
       const ChosenCity = this.state.apiCities.filter(findCity);
 
+      if(ChosenCity.length < 1){
+        const addCity = document.querySelector(".addCity");
+        addCity.style["border"] = "solid 1px red";
+        alert("Możesz wybrać miasto tylko spośród tych dostępnych w formularzu");
+        return;
+      }
+
 
       const instrumentTofind = this.state.instrument;
       function findInstrument(elem){
@@ -160,7 +180,7 @@ export default  class AddBlock extends React.Component {
     }
     render(){
         return(
-            <form className="addBlockFormDiv" onSubmit={this.handleSubmit}>
+            <form className="addBlockFormDiv" id="addBlockFormDiv" onSubmit={this.handleSubmit}>
                 <div style={{marginLeft: 40, marginBottom: 20}}>
                     <input required onChange = {this.handleRadio} value="band" type="radio" id="Szukam zespołu" name="lookingFor" />
                     <label htmlFor="Szukam zespołu">Szukam zespołu</label>
@@ -170,18 +190,18 @@ export default  class AddBlock extends React.Component {
                 <div className="inputFields" style={{marginLeft: 40}}>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input required onChange = {this.handleChangeCity} className="addCity" placeholder="Miasto"
-                            value={this.state.city} list="miastaDoWyboru" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
+                            <select  required onChange = {this.handleChangeCity} className="addCity selectpicker" placeholder="Miasto"
+                            value={this.state.city} list="miastaDoWyboru" style={{textIndent: 20, width: 305, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
-                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
-                            <datalist id="miastaDoWyboru">
+                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
+                            {/* <select id="miastaDoWyboru"> */}
                             {this.state.apiCities.map(elem => {
                                 return (
-                                  <option value={elem[1]}></option>
+                                  <option style={{}} value={elem[1]}>{elem[1]}</option>
                                 )
                               })}
-                            </datalist>
+                            </select >
                             {/* <input type="text" onChange = {this.handleChangeCity} className="addCity" placeholder="Miasto"
                             value={this.state.city} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
@@ -200,7 +220,7 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input required onChange = {this.handleChangeGenre} list="gatunkiDoWyboru" className="addGenre" placeholder="Gatunek"
+                            <input type="text" required onChange = {this.handleChangeGenre} list="gatunkiDoWyboru" className="addGenre" placeholder="Gatunek"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
@@ -220,18 +240,18 @@ export default  class AddBlock extends React.Component {
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                         </div>
                         <div>
-                            <input required type="text" onChange = {this.handleChangePhoneNumber} className="addphoneNumber"
-                            placeholder="Numer kontaktowy" value={this.state.phoneNumber} style={{textIndent: 20, 
+                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" onChange = {this.handleChangePhoneNumber} className="addphoneNumber"
+                            placeholder="000-000-000 (opcjonalnie)" value={this.state.phoneNumber} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box"}}/>
-                            <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz numer kontaktowy</p>
+                            <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz numer kontaktowy (format: 123-456-789)</p>
                         </div>
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <input required list="instrumentDoWyboru" onChange = {this.handleChangeInstrument} className="addInstrument"
+                            <input type="text" required list="instrumentDoWyboru" onChange = {this.handleChangeInstrument} className="addInstrument"
                             placeholder="Instrument" value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
@@ -253,24 +273,23 @@ export default  class AddBlock extends React.Component {
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Instrument na którym grasz</p>
                         </div>
                         <div>
-                            <input required type="text" onChange = {this.handleChangeComment} className="addComment"
-                            placeholder="Komentarz" value={this.state.comment} style={{textIndent: 20, 
-                            width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
-                            border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
-                            backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
-                            backgroundClip: "border-box"}}/>
-                            <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Dodaj komentarz</p>
+                            <input required className="dateInput" type="date" onChange = {this.handleChangeSinceWhen} min="2021-02-01" max="2021-12-31" 
+                            value={this.state.sinceWhen} style={{textIndent: 10, width: 303,
+                            marginRight: 20, height: 46, outline: "none", border: "1px solid #0000001F", 
+                            borderRadius: 4,  backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
+                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                            <p className="addCityP" style={{marginLeft: 10, fontSize: 12, marginBottom: 20}}>Od kiedy chciałbyś zacząć grać</p>
                         </div>
                     </div>
                     <div className="dateInputOuterDiv" style={{display: "flex", marginBottom: 20}}>
                         <div className="dateInputInnerDiv">
-                            <input required className="dateInput" type="date" onChange = {this.handleChangeSinceWhen} min="2021-02-01" max="2021-12-31" 
-                            value={this.state.sinceWhen} style={{textIndent: 10, width: 303, 
-                            marginRight: 20, height: 46, outline: "none", border: "1px solid #0000001F", 
-                            borderRadius: 4,  backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
-                            backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
-                            
-                            <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Od kiedy chciałbyś zacząć grać</p>
+                            <textarea form="addBlockFormDiv" required onChange = {this.handleChangeComment} className="addComment"
+                            placeholder="Napisz coś o sobie albo sowim zespole" value={this.state.comment}
+                            style={{textIndent: 20, width: 627, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
+                            border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
+                            backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
+                            backgroundClip: "border-box"}}/>
+                            <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Dodaj komentarz</p>
                         </div>
                     </div>
                 </div>
