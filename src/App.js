@@ -86,7 +86,7 @@ class App extends React.Component {
           </div>
           <div className="plus">
               <img className="plus-icon" alt="plus-icon" src={plus} />
-              <button className="plus-link" onClick={this.showAddForm}>Dodaj ogloszenie</button>
+              <button id="DodajOgłoszenieBTN" className="plus-link" onClick={this.showAddForm}>Dodaj ogloszenie</button>
           </div>
           <div className="bust">
               <img className="bust-icon" alt="bust-icon"  src={bust} /><button className="bust-link">Twój profil</button>

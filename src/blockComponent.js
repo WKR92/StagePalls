@@ -13,7 +13,6 @@ class HiddenArea extends React.Component{
         };
     }
     componentDidMount(){
-        const bub = document.querySelectorAll("li");
         const target = document.getElementById(this.state.id)
         gsap.from(target, {opacity: 0.5, duration: 1, y: -50, x: -25})
     }

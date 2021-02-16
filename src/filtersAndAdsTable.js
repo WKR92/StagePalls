@@ -25,6 +25,10 @@ export default class Table extends React.Component {
         this.handleChangeCity = this.handleChangeCity.bind(this)
     }
     componentDidMount(){
+      const nothingFound = <div style={{height: 150, backgroundColor: "#FFFFFF", display: "flex", textAlign:"center"}}>
+                              <p style={{margin: "auto"}}>Baza ogłoszeń jest pusta</p>
+                           </div>
+
       fetch("https://stagepalls.herokuapp.com/ads")
       .then((response) => response.json())
       .then( (data, lista) => lista = data.map(elem => [elem.id, elem.city.city, elem.LookFor, elem.sinceWhen, elem.genres[0].genre,
@@ -38,6 +42,7 @@ export default class Table extends React.Component {
           </li>)
         })
       )
+      .then(this.state.adsLiList.length < 1 ? this.setState({ adsLiList: nothingFound}) : null)
 
       //Get Cities Data
       fetch("https://stagepalls.herokuapp.com/cities")
@@ -79,11 +84,16 @@ export default class Table extends React.Component {
       event.preventDefault();
       new Audio(clickSound).play();
       const alowedLi = []
+      const nothingFound = <div style={{height: 150, backgroundColor: "#FFFFFF", display: "flex", textAlign:"center"}}>
+                              <p style={{margin: "auto"}}>Nie znaleziono żadnych wyników dla podanych wartości</p>
+                           </div>
   
-  
+      
       document.getElementById("submitBtn").disabled = true;
+      document.getElementById("DodajOgłoszenieBTN").disabled = true;
       setTimeout(function(){
           document.getElementById("submitBtn").disabled = false;
+          document.getElementById("DodajOgłoszenieBTN").disabled = false;
         }, 1700)
   
   
@@ -106,7 +116,7 @@ export default class Table extends React.Component {
             (elem.props.cityvalue.toLowerCase() === this.state.cityInput || this.state.cityInput === "")
             ? alowedLi.push(elem) : null))
       .then(data => this.setState({
-        filteredAds: alowedLi
+        filteredAds: alowedLi.length < 1 ? nothingFound : alowedLi
       }))
       .then(this.setState({ showFilteredBlocks: true, showBlock: false,}))
       .then(gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5}))

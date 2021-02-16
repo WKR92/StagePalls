@@ -284,11 +284,11 @@ export default  class AddBlock extends React.Component {
                     <div className="dateInputOuterDiv" style={{display: "flex", marginBottom: 20}}>
                         <div className="dateInputInnerDiv">
                             <textarea form="addBlockFormDiv" required onChange = {this.handleChangeComment} className="addComment"
-                            placeholder="Napisz coś o sobie albo sowim zespole" value={this.state.comment}
+                            placeholder="Napisz coś o sobie albo swoim zespole" value={this.state.comment}
                             style={{textIndent: 20, width: 627, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
-                            backgroundClip: "border-box"}}/>
+                            backgroundClip: "border-box", fontFamily: "Arial"}}/>
                             <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Dodaj komentarz</p>
                         </div>
                     </div>
