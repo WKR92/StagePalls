@@ -151,9 +151,9 @@ export default class Table extends React.Component {
       });
     }
     render(){
-      const nothingFound = <div style={{height: 150, marginLeft: 20, backgroundColor: "#FFFFFF", display: "flex", 
+      const loading = <div style={{height: 150, marginLeft: 20, backgroundColor: "#FFFFFF", display: "flex", 
                             marginTop: 20, textAlign:"center"}}>
-                              <p style={{margin: "auto"}}>Baza ogłoszeń jest pusta</p>
+                              <p style={{margin: "auto"}}>Ładowanie...</p>
                            </div>
         return(
           
@@ -202,7 +202,7 @@ export default class Table extends React.Component {
                         <p style={{marginRight: 20, width: "20%"}}>Miasto</p>
                     </div>
                     <div className="blocksHolderContainer" style={{marginBottom: 200}}>
-                    {this.state.adsLiList.length < 1 ? nothingFound : null}
+                    {this.state.adsLiList.length < 1 ? loading : null}
                     {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
                       {this.state.adsLiList}</ul> : this.state.showFilteredBlocks}
                     {this.state.showFilteredBlocks ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
