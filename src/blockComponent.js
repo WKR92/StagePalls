@@ -24,13 +24,13 @@ class HiddenArea extends React.Component{
                                 backgroundColor: "#FFFFFF", display: "flex", height: 70}}>
                                 {/* <div style={{width: 230}}></div> */}
                                 <div style={{display: 'flex', margin: "auto"}}>
-                                    <p style={{margin: "auto", marginRight: 0, marginLeft: 0}}>Posłuchaj jak gram/y: </p>
+                                    <p style={{margin: "auto", marginRight: 0, marginLeft: 20}}>Posłuchaj jak gram/y: </p>
                                     <audio style={{outline: "none", margin: "auto", marginLeft: 20, textAlign: "center",
                                     backgroundColor: "#FFFFFF", marginRight: 20}} controls>
                                         <source src={horseSound} type="audio/mp3"></source>
                                         Twoja przeglądarka nie obsługuje elementu audio
                                     </audio>
-                                    <p>| Testowy plik audio</p>
+                                    <p>| Testowy plik audio. Baza danych nie przyjmuje jeszcze file input</p>
                                 </div>
                             </div>
         return(
@@ -60,26 +60,33 @@ export default class Block extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            hiddenId: this.props.blockID * 0.1,
             showHiddenArea: false,
             id: this.props.blockID,
-            mail: this.props.mail === null ? "Nie podano" : this.props.mail,
+            mail: this.props.mail === "" ? "Nie podano" : this.props.mail,
             comment: this.props.comment,
-            phoneNumber: this.props.phoneNumber === null ? "Nie podano" : this.props.phoneNumber,
+            phoneNumber: this.props.phoneNumber === "0" ? "Nie podano" : this.props.phoneNumber,
         };
-        this.hiddenArea = this.hiddenArea.bind(this)
+        this.hiddenArea = this.hiddenArea.bind(this);
+        this.hideBlock = this.hideBlock.bind(this);
     }
     hiddenArea(){
         this.setState({
             showHiddenArea: !this.state.showHiddenArea
         })
     }
+    hideBlock(event){
+        event.stopPropagation();
+        const blockToHide = document.getElementById(this.state.hiddenId)
+        gsap.to(blockToHide, {opacity: 0, duration: 1})
+    }
     render(){
         return(
-            <div style={{marginLeft: 0}}>
-                <div onClick={this.hiddenArea} className="block" style={{margin: "auto", display: "flex", marginTop: 5, backgroundColor: "#FFFFFF", 
-                marginBottom: "-1px"}}>
+            <div id={this.state.hiddenId} style={{marginLeft: 0, display: this.props.displayValue, opactity: this.props.opacityValue}}>
+                <div onClick={this.hiddenArea} className="block" style={{margin: "auto", display: "flex", marginTop: 5, 
+                backgroundColor: "#FFFFFF", marginBottom: "-1px"}}>
                     <div style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
-                    <div style={{margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center", width: 200}}>
+                    <div style={{margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center", width: "17%"}}>
                         <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
                           {this.props.dateOfPublished}</data>
                         <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px"}}>
@@ -87,10 +94,11 @@ export default class Block extends React.Component {
                     </div>
                     <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", 
                     marginRight: 30, width: "2px"}}></div>
-                    <p id="instrumentP" style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
+                    <p id="instrumentP" style={{marginLeft: "2%", marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
                     <p id="genreP" style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
                     <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.fromWhen}</p>
-                    <p id="cityP" style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.city}</p>
+                    <p id="cityP" style={{marginRight: "-2%", width: "20%", paddingTop: 6}}>{this.props.city}</p>
+                    <button style={{outline: "none", marginLeft: "0px", backgroundColor: "#363840", color: "#FFFFFF"}} onClick={this.hideBlock}>Ukryj</button>
                 </div>
                 <div>
             </div >

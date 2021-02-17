@@ -25,11 +25,21 @@ export default class Table extends React.Component {
         this.handleChangeGenre = this.handleChangeGenre.bind(this)
         this.handleChangeCity = this.handleChangeCity.bind(this)
     }
+    disableBtns(){
+      document.getElementById("submitBtn").disabled = true;
+      document.getElementById("allAdsBtn").disabled = true;
+      document.getElementById("DodajOgłoszenieBTN").disabled = true;
+      setTimeout(function(){
+        document.getElementById("submitBtn").disabled = false;
+        document.getElementById("DodajOgłoszenieBTN").disabled = false;
+        document.getElementById("allAdsBtn").disabled = false;
+      }, 1700)
+    };
     componentDidMount(){
-      const nothingFound = <div style={{height: 150, backgroundColor: "#FFFFFF", display: "flex", textAlign:"center"}}>
-                              <p style={{margin: "auto"}}>Baza ogłoszeń jest pusta</p>
-                           </div>
 
+      this.disableBtns()
+      
+      
       fetch("https://stagepalls.herokuapp.com/ads")
       .then((response) => response.json())
       .then( (data, lista) => lista = data.map(elem => [elem.id, elem.city.city, elem.LookFor, elem.sinceWhen, elem.genres[0].genre,
@@ -37,12 +47,15 @@ export default class Table extends React.Component {
       )
       .then((data) => 
         this.setState({
-          adsLiList: data.map((elem) => <li id="blockLi" key={elem[0]} instrumentvalue={elem[6]} genrevalue={elem[4]} cityvalue={elem[1]}>
+          adsLiList: data.reverse().map((elem) => <li id="blockLi" key={elem[0]}  instrumentvalue={elem[6]} genrevalue={elem[4]} cityvalue={elem[1]}>
           <Block forWho={elem[2]} dateOfPublished={elem[5]} instrument={elem[6]} genre={elem[4]} fromWhen={elem[3]} city={elem[1]}
-           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} />
+           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} displayValue="block" opacityValue={1}/>
           </li>)
         })
       )
+      .then(this.setState({
+        filteredAds: this.state.adsLiList
+      }))
 
 
       //Get Cities Data
@@ -95,12 +108,7 @@ export default class Table extends React.Component {
                            </div>
   
       
-      document.getElementById("submitBtn").disabled = true;
-      document.getElementById("DodajOgłoszenieBTN").disabled = true;
-      setTimeout(function(){
-          document.getElementById("submitBtn").disabled = false;
-          document.getElementById("DodajOgłoszenieBTN").disabled = false;
-        }, 1700)
+      this.disableBtns()
   
   
       fetch("https://stagepalls.herokuapp.com/ads")
@@ -112,11 +120,11 @@ export default class Table extends React.Component {
         this.setState({
           filteredAds: data.map((elem) => <li id="blockLi" key={elem[0]} instrumentvalue={elem[6]} genrevalue={elem[4]} cityvalue={elem[1]}>
           <Block forWho={elem[2]} dateOfPublished={elem[5]} instrument={elem[6]} genre={elem[4]} fromWhen={elem[3]} city={elem[1]}
-           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} />
+           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} displayValue="block" opacityValue={1} />
           </li>)
         })
       )
-      .then((filtersList) => filtersList = this.state.filteredAds.map( elem => 
+      .then((filtersList) => filtersList = this.state.filteredAds.reverse().map( elem => 
             (elem.props.instrumentvalue.toLowerCase() === this.state.instrumentInput || this.state.instrumentInput === "") &&
             (elem.props.genrevalue.toLowerCase() === this.state.genreInput || this.state.genreInput === "") &&
             (elem.props.cityvalue.toLowerCase() === this.state.cityInput || this.state.cityInput === "")
@@ -198,7 +206,7 @@ export default class Table extends React.Component {
                     {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
                       {this.state.adsLiList}</ul> : this.state.showFilteredBlocks}
                     {this.state.showFilteredBlocks ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
-                      {this.state.filteredAds}</ul> : this.state.adsLiList ? null : <p>Ładowanie...</p>}
+                      {this.state.filteredAds}</ul> : null}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import gsap from "gsap";
 import {TimelineLite} from "gsap";
 import "./App.css";
 import logoStagePalls from './icons/stagepallslogo.svg';
@@ -12,6 +10,7 @@ import plus from './icons/icon-content-add_24px.svg';
 import bust from './icons/Icon material-person.svg';
 import AddBlock from './makeAdForm'
 import Table from './filtersAndAdsTable'
+import { event } from 'jquery';
 
 
 const adsUrl = "https://stagepalls.herokuapp.com/ads";
@@ -29,8 +28,10 @@ class App extends React.Component {
         blocks: true,
         adForm: false
       }
+      this.child = React.createRef();
       this.showAddForm = this.showAddForm.bind(this);
       this.showBlocks = this.showBlocks.bind(this);
+      this.refferToChildComponentDidMount = this.refferToChildComponentDidMount.bind(this);
   }
   componentDidMount(){    
     var navLogoElem = document.querySelector('.nav__logo');
@@ -47,6 +48,12 @@ class App extends React.Component {
         blocks: !this.state.blocks,
         adForm: !this.state.adForm
       })
+    }    
+  }
+  refferToChildComponentDidMount(){
+    this.showBlocks()
+    if(this.state.blocks === true){
+      this.child.current.componentDidMount();
     }
   }
   showAddForm(){
@@ -72,7 +79,7 @@ class App extends React.Component {
           <a href="#travel-top"><img alt="logo" src={logoStagePalls} className="nav__logo" /></a>
           <div className="megaphone">
             <img className="megaphone-icon" alt="megaphone-icon" src={megaphone} />
-            <button className="megaphone-link" onClick={this.showBlocks}>Wszystkie ogłoszenia</button>
+            <button id="allAdsBtn" className="megaphone-link" onClick={this.refferToChildComponentDidMount}>Wszystkie ogłoszenia</button>
           </div>
           <div className="tune">
               <img className="tune-icon" alt="tune-icon" src={tune} /><button className="tune-link">Twoje ogłoszenia</button>
@@ -99,7 +106,7 @@ class App extends React.Component {
                 albo dodaj własne ogłoszenie.</p>
             </div>
             <div className="main__table" id="travelToMainTable">
-              {this.state.blocks ? <Table /> : null}
+              {this.state.blocks ? <Table ref={this.child} /> : null}
               {this.state.adForm ? <AddBlock /> : null}
             </div>
         </div>

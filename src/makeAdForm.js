@@ -10,9 +10,6 @@ import timeIcon from './icons/Icon awesome-clock.svg';
 import purplePlusIcon from './icons//↳Color.svg';
 import clickSound from './icons/Tiny Button Push-SoundBible.com-513260752.mp3'
 import axios from 'axios';
-import $ from 'jquery'; 
-// React.Bootstrap = require('react-bootstrap');
-// React.Bootstrap.Select = require('react-bootstrap-select');
 
 
 export default  class AddBlock extends React.Component {
@@ -148,7 +145,7 @@ export default  class AddBlock extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
          }
-    if(
+
       axios
         .post('https://stagepalls.herokuapp.com/ads', {
           "city": { id: ChosenCity[0][0]},
@@ -167,11 +164,11 @@ export default  class AddBlock extends React.Component {
         })
         .catch(error => {
           console.error(error)
-      })){alert("Twoje muzyczne ogloszenie zostało dodane pomyślnie");
-          window.location.reload(false)
-          }else{alert("Coś poszło nie tak, spróbuj jeszcze raz")}
+      })
           
-      // window.location.reload(false)
+      
+      alert("Twoje muzyczne ogloszenie zostało dodane pomyślnie");
+      window.location.reload(false)
     }
     render(){
         return(
@@ -186,14 +183,14 @@ export default  class AddBlock extends React.Component {
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
                             <select form="addBlockFormDiv" required onClick={this.handleChangeCity} onChange = {this.handleChangeCity} className="addCity selectpicker"
-                            value={this.state.city} defaultValue="Kraków" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
+                            value={this.state.city} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                             {/* <select id="miastaDoWyboru"> */}
                             {this.state.apiCities.map(elem => {
                                 return (
-                                  <option value={elem[1]}>{elem[1]}</option>
+                                  <option key={elem[1]} value={elem[1]}>{elem[1]}</option>
                                 )
                               })}
                             </select >
@@ -215,14 +212,14 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select defaultValue="Rock" form="addBlockFormDiv" required onChange = {this.handleChangeGenre} className="addGenre"
+                            <select form="addBlockFormDiv" required onChange = {this.handleChangeGenre} className="addGenre"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                               {this.state.apiGenres.map(elem => {
                                   return (
-                                    <option value={elem[1]}>{elem[1]}</option>
+                                    <option key={elem[1]} value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
                             </select>
@@ -234,7 +231,7 @@ export default  class AddBlock extends React.Component {
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                         </div>
                         <div>
-                            <input type="tel" maxlength="9" minLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
+                            <input type="tel" maxLength="9" minLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
                             className="addphoneNumber" placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} 
                             style={{textIndent: 20, width: 300, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
@@ -245,7 +242,7 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select defaultValue="Gitara basowa" form="addBlockFormDiv" required onChange = {this.handleChangeInstrument} className="addInstrument"
+                            <select form="addBlockFormDiv" required onChange = {this.handleChangeInstrument} className="addInstrument"
                             value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
@@ -254,7 +251,7 @@ export default  class AddBlock extends React.Component {
                             {/* <datalist id="instrumentDoWyboru"> */}
                               {this.state.apiInstruments.map(elem => {
                                   return (
-                                    <option value={elem[1]}>{elem[1]}</option>
+                                    <option key={elem[1]} value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
                             </select>

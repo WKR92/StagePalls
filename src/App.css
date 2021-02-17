@@ -246,3 +246,9 @@ nav .bust .bust-link:hover {
     margin: auto;
   }
 }
+
+@media only screen and (max-width: 1000px) {
+  nav {
+    display: none;
+  }
+}
