@@ -33,8 +33,6 @@ class App extends React.Component {
       this.showBlocks = this.showBlocks.bind(this);
   }
   componentDidMount(){    
-    gsap.from(".nav__logo", {duration: 1, y: -100});
-
     var navLogoElem = document.querySelector('.nav__logo');
     navLogoElem.addEventListener('mouseover', shakeLogo);
     function shakeLogo(event) {
@@ -44,14 +42,12 @@ class App extends React.Component {
     }
   }
   showBlocks(){
-    window.location.reload(false);
-    if(this.state.blocks === true){
-      return;
+    if(this.state.blocks === false){
+      this.setState({
+        blocks: !this.state.blocks,
+        adForm: !this.state.adForm
+      })
     }
-    this.setState({
-      blocks: !this.state.blocks,
-      adForm: !this.state.adForm
-    })
   }
   showAddForm(){
     if(this.state.adForm === true){
@@ -82,7 +78,7 @@ class App extends React.Component {
               <img className="tune-icon" alt="tune-icon" src={tune} /><button className="tune-link">Twoje ogłoszenia</button>
           </div>
           <div className="lupe">
-              <img className="lupe-icon" alt="lupe-icon" src={lupe} /><button className="lupe-link">Szukaj ogłoszenia</button>
+              <img className="lupe-icon" alt="lupe-icon" src={lupe} /><a onClick={this.showBlocks} style={{marginLeft: 7}} href="#travelToMainTable" className="lupe-link">Szukaj ogłoszenia</a>
           </div>
           <div className="plus">
               <img className="plus-icon" alt="plus-icon" src={plus} />
@@ -102,7 +98,7 @@ class App extends React.Component {
                 <p className="main__description__sub-title">Skorzystaj z wyszukiwarki by dodać myzuka lub zespół 
                 albo dodaj własne ogłoszenie.</p>
             </div>
-            <div className="main__table">
+            <div className="main__table" id="travelToMainTable">
               {this.state.blocks ? <Table /> : null}
               {this.state.adForm ? <AddBlock /> : null}
             </div>

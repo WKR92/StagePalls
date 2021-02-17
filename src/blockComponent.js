@@ -1,5 +1,6 @@
 import React from 'react';
 import gsap from "gsap";
+import horseSound from './icons/Horse-Neighing-D-www.fesliyanstudios.com.mp3';
 
 
 class HiddenArea extends React.Component{
@@ -10,6 +11,7 @@ class HiddenArea extends React.Component{
             mail: this.props.mail,
             comment: this.props.comment,
             phoneNumber: this.props.phoneNumber,
+            showMusicArea: true
         };
     }
     componentDidMount(){
@@ -17,20 +19,38 @@ class HiddenArea extends React.Component{
         gsap.from(target, {opacity: 0.5, duration: 1, y: -50, x: -25})
     }
     render(){
+        // Próba jak będzie funkcjonowała sekcja audio
+        const musicBlock = <div style={{ borderRight: "2px solid #EFEFEF" , borderLeft: "2px solid #EFEFEF", borderBottom: "transparent", 
+                                backgroundColor: "#FFFFFF", display: "flex", height: 70}}>
+                                {/* <div style={{width: 230}}></div> */}
+                                <div style={{display: 'flex', margin: "auto"}}>
+                                    <p style={{margin: "auto", marginRight: 0, marginLeft: 0}}>Posłuchaj jak gram/y: </p>
+                                    <audio style={{outline: "none", margin: "auto", marginLeft: 20, textAlign: "center",
+                                    backgroundColor: "#FFFFFF", marginRight: 20}} controls>
+                                        <source src={horseSound} type="audio/mp3"></source>
+                                        Twoja przeglądarka nie obsługuje elementu audio
+                                    </audio>
+                                    <p>| Testowy plik audio</p>
+                                </div>
+                            </div>
         return(
-            <div id={this.state.id} className="HiddenAreaMainDiv" style={{height: 150, backgroundColor: "#FFFFFF", margin: "auto", display: "flex", border: "2px solid #EFEFEF",
-            borderRight: "transparent"}}>
-                <div style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid #5F77D9",
-                borderTop: "2.85px solid #5F77D9"}}>
-                    <p style={{marginBottom:0, paddingTop:5, marginLeft: "5%", fontSize: 14}}>Email:</p>
-                    <p style={{marginTop:5, marginLeft: "8%",marginBottom:0, color: "#be3144", overflow: "auto"}}>{this.state.mail}</p>
-                    <p style={{marginBottom:0, marginLeft: "5%", fontSize: 14}}>Numer tel:</p>
-                    <p className="telP" style={{marginTop:5, marginLeft: "8%", color: "#be3144", overflow: "auto"}}>{this.state.phoneNumber}</p>
+            <div id={this.state.id}>
+                <div  className="HiddenAreaMainDiv" style={{height: 150, backgroundColor: "#FFFFFF", margin: "auto", display: "flex", border: "2px solid #EFEFEF",
+                borderRight: "transparent"}}>
+                    <div style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid #5F77D9",
+                    borderTop: "2.85px solid #5F77D9"}}>
+                        <p style={{marginBottom:0, paddingTop:5, marginLeft: "5%", fontSize: 14}}>Email:</p>
+                        <p style={{marginTop:5, marginLeft: "8%",marginBottom:0, color: "#be3144", overflow: "auto"}}>{this.state.mail}</p>
+                        <p style={{marginBottom:0, marginLeft: "5%", fontSize: 14}}>Numer tel:</p>
+                        <p className="telP" style={{marginTop:5, marginLeft: "8%", color: "#be3144", overflow: "auto"}}>{this.state.phoneNumber}</p>
+                    </div>
+                    <div style={{width: "81%", display: "flex", border: "2px solid #EFEFEF"}}>
+                        <p style={{paddingLeft: 15, marginRight: 20, paddingTop: 1}}>Opis: </p>
+                        <p style={{width:"90%", overflow: "auto"}}>{this.state.comment}</p>
+                    </div>
+                        
                 </div>
-                <div style={{width: "81%", display: "flex", border: "2px solid #EFEFEF"}}>
-                    <p style={{paddingLeft: 15, marginRight: 20, paddingTop: 1}}>Opis: </p>
-                    <p style={{width:"90%", overflow: "auto"}}>{this.state.comment}</p>
-                </div>          
+                    {this.state.showMusicArea ? musicBlock : null}
             </div>
         )
     }

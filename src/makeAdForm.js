@@ -20,11 +20,11 @@ export default  class AddBlock extends React.Component {
         super(props);
         this.state = {
           radio: "",
-          city: "",
+          city: "Warszawa",
           mail: "",
-          genre: "",
+          genre: "Rock",
           phoneNumber: "",
-          instrument: "",
+          instrument: "Gitara basowa",
           comment: "",
           sinceWhen: 'DD/MM/YYYY',
           musicFile: [],
@@ -185,15 +185,15 @@ export default  class AddBlock extends React.Component {
                 <div className="inputFields" style={{marginLeft: 40}}>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select form="addBlockFormDiv" required onChange = {this.handleChangeCity} className="addCity selectpicker"
-                            value={this.state.city} style={{textIndent: 20, width: 305, marginRight: 20, height: 46, textAlign: "stretch", 
+                            <select form="addBlockFormDiv" required onClick={this.handleChangeCity} onChange = {this.handleChangeCity} className="addCity selectpicker"
+                            value={this.state.city} defaultValue="Kraków" style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                             {/* <select id="miastaDoWyboru"> */}
                             {this.state.apiCities.map(elem => {
                                 return (
-                                  <option selected={elem[1]} style={{}} value={elem[1]}>{elem[1]}</option>
+                                  <option value={elem[1]}>{elem[1]}</option>
                                 )
                               })}
                             </select >
@@ -206,7 +206,7 @@ export default  class AddBlock extends React.Component {
                         </div>
                         <div>
                             <input required type="email" onChange = {this.handleChangeMail} className="addMail" placeholder="Adres email"
-                            value={this.state.mail} style={{textIndent: 20,width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                            value={this.state.mail} style={{textIndent: 20,width: 300, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${mailIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
@@ -215,14 +215,14 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select form="addBlockFormDiv" required onChange = {this.handleChangeGenre} className="addGenre"
+                            <select defaultValue="Rock" form="addBlockFormDiv" required onChange = {this.handleChangeGenre} className="addGenre"
                             value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
                               {this.state.apiGenres.map(elem => {
                                   return (
-                                    <option selected={elem[1]} value={elem[1]} />
+                                    <option value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
                             </select>
@@ -236,8 +236,7 @@ export default  class AddBlock extends React.Component {
                         <div>
                             <input type="tel" maxlength="9" minLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
                             className="addphoneNumber" placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} 
-                            style={{textIndent: 20, 
-                            width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                            style={{textIndent: 20, width: 300, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box"}}/>
@@ -246,7 +245,7 @@ export default  class AddBlock extends React.Component {
                     </div>
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
-                            <select form="addBlockFormDiv" required onChange = {this.handleChangeInstrument} className="addInstrument"
+                            <select defaultValue="Gitara basowa" form="addBlockFormDiv" required onChange = {this.handleChangeInstrument} className="addInstrument"
                             value={this.state.instrument} style={{textIndent: 20, 
                             width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
@@ -255,7 +254,7 @@ export default  class AddBlock extends React.Component {
                             {/* <datalist id="instrumentDoWyboru"> */}
                               {this.state.apiInstruments.map(elem => {
                                   return (
-                                    <option selected={elem[1]} value={elem[1]}>{elem[1]}</option>
+                                    <option value={elem[1]}>{elem[1]}</option>
                                   )
                                 })}
                             </select>
@@ -270,7 +269,7 @@ export default  class AddBlock extends React.Component {
                         <div>
                             <input required className="dateInput" type="date" onChange = {this.handleChangeSinceWhen} min="2021-02-01" max="2021-12-31" 
                             value={this.state.sinceWhen} style={{textIndent: 10, width: 303,
-                            marginRight: 20, height: 46, outline: "none", border: "1px solid #0000001F", 
+                            marginRight: 20, height: 44, outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4,  backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12, marginBottom: 20}}>Od kiedy chciałbyś zacząć grać</p>
@@ -280,7 +279,7 @@ export default  class AddBlock extends React.Component {
                         <div className="dateInputInnerDiv">
                             <textarea form="addBlockFormDiv" required onChange = {this.handleChangeComment} className="addComment"
                             placeholder="Napisz coś o sobie albo swoim zespole" value={this.state.comment}
-                            style={{textIndent: 20, width: 520, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
+                            style={{textIndent: 20, width: 516, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box", fontFamily: "Arial", resize: "none", paddingTop: 20,
@@ -294,7 +293,8 @@ export default  class AddBlock extends React.Component {
                         <p style={{color: "#6200EE", fontFamily: "Roboto", fontSize: 15, border: "none", paddingLeft: 2}}>
                           DODAJ UTWÓR PODGLĄDOWY</p>
                     </div>
-                    <input type="file" id="musicInp" name="musicInp" accpet="" style={{paddingLeft: 2, marginRight: 10}} />
+                    <input type="file" id="musicInp" name="musicInp" accpet="" accept=".mp3, .mp4, .wav, .wma, .flac, .m4a, .acc"
+                    style={{paddingLeft: 2, marginRight: 10}} />
                 </div>
                 <div className="addAdv" style={{display: "inline-block", marginLeft: 40, backgroundColor: "#6200EE", 
                 borderRadius: "4px", alignItems: "center"}}>

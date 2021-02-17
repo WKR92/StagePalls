@@ -43,7 +43,7 @@ export default class Table extends React.Component {
           </li>)
         })
       )
-      .then(this.state.adsLiList.length < 1 ? this.setState({ adsLiList: nothingFound}) : null)
+
 
       //Get Cities Data
       fetch("https://stagepalls.herokuapp.com/cities")
@@ -82,6 +82,12 @@ export default class Table extends React.Component {
     // }
     handleSubmit(event){
       event.preventDefault();
+
+      // Disable if there is nothing to search for
+      if(this.state.cityInput === "" && this.state.instrumentInput === "" && this.state.genreInput === ""){
+        return;
+      }
+
       new Audio(clickSound).play();
       const alowedLi = []
       const nothingFound = <div style={{height: 150, backgroundColor: "#FFFFFF", display: "flex", textAlign:"center"}}>
@@ -137,7 +143,12 @@ export default class Table extends React.Component {
       });
     }
     render(){
+      const nothingFound = <div style={{height: 150, marginLeft: 20, backgroundColor: "#FFFFFF", display: "flex", 
+                            marginTop: 20, textAlign:"center"}}>
+                              <p style={{margin: "auto"}}>Baza ogłoszeń jest pusta</p>
+                           </div>
         return(
+          
             <div className="blocksHolder">
                 <form onSubmit={this.handleSubmit} className="table-form" style={{display: "flex", paddingLeft: 20}}>
                     <input list="instrumenty" id="instrumentInp" value={this.state.instrumentInput} type="text" onChange = {this.handleChangeInstrument} 
@@ -183,8 +194,9 @@ export default class Table extends React.Component {
                         <p style={{marginRight: 20, width: "20%"}}>Miasto</p>
                     </div>
                     <div className="blocksHolderContainer" style={{marginBottom: 200}}>
+                    {this.state.adsLiList.length < 1 ? nothingFound : null}
                     {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
-                      {this.state.adsLiList}</ul> : this.state.showFilteredBlocks ? null : <p>Ładowanie...</p>}
+                      {this.state.adsLiList}</ul> : this.state.showFilteredBlocks}
                     {this.state.showFilteredBlocks ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
                       {this.state.filteredAds}</ul> : this.state.adsLiList ? null : <p>Ładowanie...</p>}
                     </div>
