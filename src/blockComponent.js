@@ -117,7 +117,7 @@ export default class Block extends React.Component {
                     <div style={{margin: "auto", display: "flex", flexDirection: "column", width: "17%"}}>
                         <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
                           {this.props.dateOfPublished}</data>
-                        <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px"}}>
+                        <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px", paddingRight: 10}}>
                           {this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
                     </div>
                     <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", 
