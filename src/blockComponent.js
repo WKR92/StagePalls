@@ -1,5 +1,6 @@
 import React from 'react';
 import gsap from "gsap";
+import {TimelineLite} from "gsap";
 import horseSound from './icons/Horse-Neighing-D-www.fesliyanstudios.com.mp3';
 
 
@@ -60,7 +61,8 @@ export default class Block extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hiddenId: this.props.blockID * 0.1,
+            hiddenId: this.props.blockID + 0.1,
+            btnID: this.props.blockID + 0.2,
             showHiddenArea: false,
             id: this.props.blockID,
             mail: this.props.mail === "" ? "Nie podano" : this.props.mail,
@@ -70,6 +72,27 @@ export default class Block extends React.Component {
         this.hiddenArea = this.hiddenArea.bind(this);
         this.hideBlock = this.hideBlock.bind(this);
     }
+    componentDidMount(){
+        var ukryjBtn = document.getElementById(this.state.btnID)
+        ukryjBtn.addEventListener('mouseover', hover);
+        function hover(event) {
+            const target = event.target;
+            var tl = new TimelineLite();
+            tl.to(target, 0.1, {backgroundColor: "#8f1f2e"});
+        }
+
+        ukryjBtn.addEventListener('mouseout', aHover);
+        function aHover(event) {
+            const target = event.target;
+            var tl = new TimelineLite();
+            tl.to(target, 0.1, {backgroundColor: "#363840"});
+        }
+    }
+    componentDidUpdate(){
+        const blockToShow = document.getElementById(this.state.hiddenId)
+        blockToShow.style["display"] = "block"
+        blockToShow.style["opacity"] = 1
+    }
     hiddenArea(){
         this.setState({
             showHiddenArea: !this.state.showHiddenArea
@@ -78,15 +101,20 @@ export default class Block extends React.Component {
     hideBlock(event){
         event.stopPropagation();
         const blockToHide = document.getElementById(this.state.hiddenId)
-        gsap.to(blockToHide, {opacity: 0, duration: 1})
+        gsap.to(blockToHide, {opacity: 0, duration: 1, display: "none"})
+    }
+    component(){
+        this.setState({
+            showHiddenArea: !this.state.showHiddenArea
+        })
     }
     render(){
         return(
-            <div id={this.state.hiddenId} style={{marginLeft: 0, display: this.props.displayValue, opactity: this.props.opacityValue}}>
+            <div className="blockMainDiv" id={this.state.hiddenId} style={{marginLeft: 0}}>
                 <div onClick={this.hiddenArea} className="block" style={{margin: "auto", display: "flex", marginTop: 5, 
                 backgroundColor: "#FFFFFF", marginBottom: "-1px"}}>
                     <div style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
-                    <div style={{margin: "auto", display: "flex", flexDirection: "column", justifyContent: "center", width: "17%"}}>
+                    <div style={{margin: "auto", display: "flex", flexDirection: "column", width: "17%"}}>
                         <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
                           {this.props.dateOfPublished}</data>
                         <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px"}}>
@@ -98,7 +126,8 @@ export default class Block extends React.Component {
                     <p id="genreP" style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
                     <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.fromWhen}</p>
                     <p id="cityP" style={{marginRight: "-2%", width: "20%", paddingTop: 6}}>{this.props.city}</p>
-                    <button style={{outline: "none", marginLeft: "0px", backgroundColor: "#363840", color: "#FFFFFF"}} onClick={this.hideBlock}>Ukryj</button>
+                    <button id={this.state.btnID} className="ukryjBtn" style={{outline: "none", marginLeft: "0px", backgroundColor: "#363840", 
+                    color: "#FFFFFF"}} onClick={this.hideBlock}>Ukryj</button>
                 </div>
                 <div>
             </div >

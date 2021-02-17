@@ -49,7 +49,7 @@ export default class Table extends React.Component {
         this.setState({
           adsLiList: data.reverse().map((elem) => <li id="blockLi" key={elem[0]}  instrumentvalue={elem[6]} genrevalue={elem[4]} cityvalue={elem[1]}>
           <Block forWho={elem[2]} dateOfPublished={elem[5]} instrument={elem[6]} genre={elem[4]} fromWhen={elem[3]} city={elem[1]}
-           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} displayValue="block" opacityValue={1}/>
+           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]}/>
           </li>)
         })
       )
@@ -120,7 +120,7 @@ export default class Table extends React.Component {
         this.setState({
           filteredAds: data.map((elem) => <li id="blockLi" key={elem[0]} instrumentvalue={elem[6]} genrevalue={elem[4]} cityvalue={elem[1]}>
           <Block forWho={elem[2]} dateOfPublished={elem[5]} instrument={elem[6]} genre={elem[4]} fromWhen={elem[3]} city={elem[1]}
-           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} displayValue="block" opacityValue={1} />
+           blockID={elem[0]} comment={elem[7]} mail={elem[8]} phoneNumber={elem[9]} />
           </li>)
         })
       )
@@ -192,7 +192,7 @@ export default class Table extends React.Component {
                     <input id="submitBtn" className="submitBtn" type="submit" value="Zatwierdź" style={{color: "#FFFFFFDE", width: "120px", 
                       borderRadius: "10px", outline: "none"}}/>
                 </form>
-                <div>
+                <div className="innerDiv">
                     <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", paddingTop: 20, 
                     justifyContent: "space-evenly"}}>
                         <p style={{marginRight: 20, visibility: "hidden", width: "20%"}}>Puste</p>
