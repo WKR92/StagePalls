@@ -21,24 +21,24 @@ class HiddenArea extends React.Component{
     }
     render(){
         // Próba jak będzie funkcjonowała sekcja audio
-        const musicBlock = <div style={{ borderRight: "2px solid #EFEFEF" , borderLeft: "2px solid #EFEFEF", borderBottom: "transparent", 
-                                backgroundColor: "#FFFFFF", display: "flex", height: 70}}>
+        const musicBlock = <div id="musicPartOfBLock" style={{ borderRight: "2px solid #EFEFEF" , borderLeft: "2px solid #EFEFEF", borderBottom: "transparent", 
+                                backgroundColor: "#FFFFFF", display: "flex"}}>
                                 {/* <div style={{width: 230}}></div> */}
-                                <div style={{display: 'flex', margin: "auto"}}>
-                                    <p style={{margin: "auto", marginRight: 0, marginLeft: 20}}>Posłuchaj jak gram/y: </p>
-                                    <audio style={{outline: "none", margin: "auto", marginLeft: 20, textAlign: "center",
-                                    backgroundColor: "#FFFFFF", marginRight: 20}} controls>
+                                <div style={{width: "100%", display: 'flex', paddingRight: 0, alignItems: "center", justifyContent: 'center'}}>
+                                    <p style={{marginRight: 0, marginLeft: 0, paddingLeft: 10}}>Posłuchaj jak gram/y: </p>
+                                    <audio style={{outline: "none", marginLeft: 10, textAlign: "center",
+                                    backgroundColor: "#FFFFFF", marginRight: 10, paddingTop: 5, paddingBottom: 5}} controls>
                                         <source src={horseSound} type="audio/mp3"></source>
                                         Twoja przeglądarka nie obsługuje elementu audio
                                     </audio>
-                                    <p>| Testowy plik audio. Baza danych nie przyjmuje jeszcze file input</p>
+                                    <p style={{paddingRight: 10}}>| Testowy plik audio. Baza danych nie przyjmuje jeszcze file input</p>
                                 </div>
                             </div>
         return(
             <div id={this.state.id}>
                 <div  className="HiddenAreaMainDiv" style={{height: 150, backgroundColor: "#FFFFFF", margin: "auto", display: "flex", border: "2px solid #EFEFEF",
                 borderRight: "transparent"}}>
-                    <div style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid #5F77D9",
+                    <div id="hiddenAreaEmailAndPhoneBlock" style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid #5F77D9",
                     borderTop: "2.85px solid #5F77D9"}}>
                         <p style={{marginBottom:0, paddingTop:5, marginLeft: "5%", fontSize: 14}}>Email:</p>
                         <p style={{marginTop:5, marginLeft: "8%",marginBottom:0, color: "#be3144", overflow: "auto"}}>{this.state.mail}</p>
@@ -62,7 +62,6 @@ export default class Block extends React.Component {
         super(props);
         this.state = {
             hiddenId: this.props.blockID + 0.1,
-            btnID: this.props.blockID + 0.2,
             showHiddenArea: false,
             id: this.props.blockID,
             mail: this.props.mail === "" ? "Nie podano" : this.props.mail,
@@ -70,38 +69,11 @@ export default class Block extends React.Component {
             phoneNumber: this.props.phoneNumber === "0" ? "Nie podano" : this.props.phoneNumber,
         };
         this.hiddenArea = this.hiddenArea.bind(this);
-        this.hideBlock = this.hideBlock.bind(this);
-    }
-    componentDidMount(){
-        var ukryjBtn = document.getElementById(this.state.btnID)
-        ukryjBtn.addEventListener('mouseover', hover);
-        function hover(event) {
-            const target = event.target;
-            var tl = new TimelineLite();
-            tl.to(target, 0.1, {backgroundColor: "#8f1f2e"});
-        }
-
-        ukryjBtn.addEventListener('mouseout', aHover);
-        function aHover(event) {
-            const target = event.target;
-            var tl = new TimelineLite();
-            tl.to(target, 0.1, {backgroundColor: "#363840"});
-        }
-    }
-    componentDidUpdate(){
-        const blockToShow = document.getElementById(this.state.hiddenId)
-        blockToShow.style["display"] = "block"
-        blockToShow.style["opacity"] = 1
     }
     hiddenArea(){
         this.setState({
             showHiddenArea: !this.state.showHiddenArea
         })
-    }
-    hideBlock(event){
-        event.stopPropagation();
-        const blockToHide = document.getElementById(this.state.hiddenId)
-        gsap.to(blockToHide, {opacity: 0, duration: 1, display: "none"})
     }
     component(){
         this.setState({
@@ -110,24 +82,24 @@ export default class Block extends React.Component {
     }
     render(){
         return(
-            <div className="blockMainDiv" id={this.state.hiddenId} style={{marginLeft: 0}}>
+            <div className="blockMainDiv" id={this.state.hiddenId}>
                 <div onClick={this.hiddenArea} className="block" style={{margin: "auto", display: "flex", marginTop: 5, 
                 backgroundColor: "#FFFFFF", marginBottom: "-1px"}}>
-                    <div style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
-                    <div style={{margin: "auto", display: "flex", flexDirection: "column", width: "17%"}}>
-                        <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
-                          {this.props.dateOfPublished}</data>
-                        <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px", paddingRight: 10}}>
-                          {this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
+                    <div style={{display: "flex", borderRight: "2px solid #EFEFEF", width: "14%", paddingRight: 20}}>
+                        <div id="blueDiv" style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
+                        <div style={{margin: "auto", display: "flex", flexDirection: "column", width: "100%"}}>
+                            <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
+                            {this.props.dateOfPublished}</data>
+                            <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px", paddingRight: 10}}>
+                            {this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
+                        </div>
                     </div>
-                    <div style={{backgroundColor: "#EFEFEF", borderLeft: "solid 1px #EFEFEF", borderRight: "solid 1px #EFEFEF", 
-                    marginRight: 30, width: "2px"}}></div>
-                    <p id="instrumentP" style={{marginLeft: "2%", marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.instrument}</p>
-                    <p id="genreP" style={{marginRight: 0, width: "20%", paddingTop: 6}}>{this.props.genre}</p>
-                    <p style={{marginRight: 20, width: "20%", paddingTop: 6}}>{this.props.fromWhen}</p>
-                    <p id="cityP" style={{marginRight: "-2%", width: "20%", paddingTop: 6}}>{this.props.city}</p>
-                    <button id={this.state.btnID} className="ukryjBtn" style={{outline: "none", marginLeft: "0px", backgroundColor: "#363840", 
-                    color: "#FFFFFF"}} onClick={this.hideBlock}>Ukryj</button>
+                    <div style={{display: "flex", alignItems: "center", borderLeft: "2px solid #EFEFEF", justifyContent: "space-evenly", width: "80%"}}>
+                        <p id="instrumentP" style={{marginLeft: 0, width: "20%", marginRight: -12, paddingTop: 6, textAlign: "center"}}>{this.props.instrument}</p>
+                        <p id="genreP" style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>{this.props.genre}</p>
+                        <p style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>{this.props.fromWhen}</p>
+                        <p id="cityP" style={{width: "20%", marginRight: 0, paddingTop: 6, marginLeft: 0, textAlign: "center"}}>{this.props.city}</p>
+                    </div>
                 </div>
                 <div>
             </div >

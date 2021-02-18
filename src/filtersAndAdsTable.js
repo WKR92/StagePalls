@@ -25,19 +25,19 @@ export default class Table extends React.Component {
         this.handleChangeGenre = this.handleChangeGenre.bind(this)
         this.handleChangeCity = this.handleChangeCity.bind(this)
     }
-    disableBtns(){
-      document.getElementById("submitBtn").disabled = true;
-      document.getElementById("allAdsBtn").disabled = true;
-      document.getElementById("DodajOgłoszenieBTN").disabled = true;
-      setTimeout(function(){
-        document.getElementById("submitBtn").disabled = false;
-        document.getElementById("DodajOgłoszenieBTN").disabled = false;
-        document.getElementById("allAdsBtn").disabled = false;
-      }, 1700)
-    };
+    // disableBtns(){
+    //   document.getElementById("submitBtn").disabled = true;
+    //   document.getElementById("allAdsBtn").disabled = true;
+    //   document.getElementById("DodajOgłoszenieBTN").disabled = true;
+    //   setTimeout(function(){
+    //     document.getElementById("submitBtn").disabled = false;
+    //     // document.getElementById("DodajOgłoszenieBTN").disabled = false;
+    //     document.getElementById("allAdsBtn").disabled = false;
+    //   }, 1700)
+    // };
     componentDidMount(){
 
-      this.disableBtns()
+      // this.disableBtns()
       
       
       fetch("https://stagepalls.herokuapp.com/ads")
@@ -82,7 +82,7 @@ export default class Table extends React.Component {
       }))
           
       //Animations
-      gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5 })
+      gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5})
       
     }
     // componentWillUpdate(){
@@ -108,7 +108,7 @@ export default class Table extends React.Component {
                            </div>
   
       
-      this.disableBtns()
+      // this.disableBtns()
   
   
       fetch("https://stagepalls.herokuapp.com/ads")
@@ -158,7 +158,7 @@ export default class Table extends React.Component {
         return(
           
             <div className="blocksHolder">
-                <form onSubmit={this.handleSubmit} className="table-form" style={{display: "flex", paddingLeft: 20}}>
+                <form id="filtersForm" onSubmit={this.handleSubmit} className="table-form" style={{display: "flex", paddingLeft: 20}}>
                     <input list="instrumenty" id="instrumentInp" value={this.state.instrumentInput} type="text" onChange = {this.handleChangeInstrument} 
                       className="filter-instrument" placeholder="Instrument" style={{width: 120, marginRight: 20, 
                       height: 46, textAlign: "center", borderRadius: "10px", outline: "none"}}/>
@@ -192,15 +192,32 @@ export default class Table extends React.Component {
                     <input id="submitBtn" className="submitBtn" type="submit" value="Zatwierdź" style={{color: "#FFFFFFDE", width: "120px", 
                       borderRadius: "10px", outline: "none"}}/>
                 </form>
+                <p id="filterInfo" style={{marginTop: 15, textAlign: "center", color: "#363840",
+                fontSize: 14}}>Zatwierdź filtrowane wartości enterem</p>
+                
+                
                 <div className="innerDiv">
-                    <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", paddingTop: 20, 
-                    justifyContent: "space-evenly"}}>
-                        <p style={{marginRight: 20, visibility: "hidden", width: "20%"}}>Puste</p>
-                        <p style={{marginRight: 20, width: "20%"}}>Instrument</p>
-                        <p style={{marginRight: 20, width: "20%"}}>Gatunek</p>
-                        <p style={{marginRight: 20, width: "20%"}}>Od kiedy</p>
-                        <p style={{marginRight: 20, width: "20%"}}>Miasto</p>
+                
+                {/* <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", paddingTop: 20, 
+                    justifyContent: "space-evenly", border: "1px solid green"}}> */}
+                    <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", 
+                    marginTop: 5, backgroundColor: "#EFEFEF", marginBottom: "-1px", paddingTop: 20}}>
+                    <div style={{display: "flex", borderRight: "2px solid #EFEFEF", width: "14%", paddingRight: 20, visibility: "hidden"}}>
+                        <div style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
+                        <div style={{margin: "auto", display: "flex", flexDirection: "column", width: "100%"}}>
+                            <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
+                            {this.props.dateOfPublished}</data>
+                            <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px", paddingRight: 10}}>
+                            {this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
+                        </div>
                     </div>
+                    <div style={{display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "80%"}}>
+                        <p id="instrumentP" style={{marginLeft: 0, width: "20%", marginRight: -12, paddingTop: 6, textAlign: "center"}}>Instrument</p>
+                        <p id="genreP" style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>Gatunek</p>
+                        <p style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>Od kiedy</p>
+                        <p id="cityP" style={{width: "20%", marginRight: 0, paddingTop: 6, marginLeft: 0, textAlign: "center"}}>Miasto</p>
+                    </div>
+                </div>
                     <div className="blocksHolderContainer" style={{marginBottom: 200}}>
                     {this.state.adsLiList.length < 1 ? loading : null}
                     {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>

@@ -183,7 +183,7 @@ export default  class AddBlock extends React.Component {
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
                             <select form="addBlockFormDiv" required onClick={this.handleChangeCity} onChange = {this.handleChangeCity} className="addCity selectpicker"
-                            value={this.state.city} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, textAlign: "stretch", 
+                            value={this.state.city} style={{textIndent: 20, width: 297, marginRight: 20, height: 46, textAlign: "stretch", 
                             outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${localisationIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
@@ -201,19 +201,30 @@ export default  class AddBlock extends React.Component {
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/> */}
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Miasto w którym chciałbyś grać</p>
                         </div>
-                        <div>
+                        <div id="mailInputDiv">
                             <input required type="email" onChange = {this.handleChangeMail} className="addMail" placeholder="Adres email"
-                            value={this.state.mail} style={{textIndent: 20,width: 300, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
+                            value={this.state.mail} style={{textIndent: 20,width: 291, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${mailIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                             <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz adres kontaktowy</p>
                         </div>
                     </div>
+
+                    {/* resizeMailInput */}
+                    <div id="resize-mailInput">
+                        <input required type="email" onChange = {this.handleChangeMail} className="addMail" placeholder="Adres email"
+                        value={this.state.mail} style={{textIndent: 20, width: 291, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
+                        border: "1px solid #0000001F", 
+                        borderRadius: 4, backgroundImage: `url("${mailIcon}")`, backgroundColor: "white", 
+                        backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                        <p className="addMailP" style={{marginLeft: 10, fontSize: 12, marginBottom: 20}}>Wpisz adres kontaktowy</p>
+                    </div>
+
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
                             <select form="addBlockFormDiv" required onChange = {this.handleChangeGenre} className="addGenre"
-                            value={this.state.genre} style={{textIndent: 20, width: 300, marginRight: 20, height: 46, 
+                            value={this.state.genre} style={{textIndent: 20, width: 297, marginRight: 20, height: 46, 
                             textAlign: "stretch", outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4, backgroundImage: `url("${notesIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}>
@@ -230,21 +241,33 @@ export default  class AddBlock extends React.Component {
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/> */}
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Gatunek lub kilka oddzielonych przecinkiem</p>
                         </div>
-                        <div>
-                            <input type="tel" maxLength="9" minLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
+                        <div id="phoneInputDiv">
+                            <input type="tel" maxLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
                             className="addphoneNumber" placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} 
-                            style={{textIndent: 20, width: 300, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
+                            style={{textIndent: 20, width: 291, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box"}}/>
                             <p className="addMailP" style={{marginLeft: 10, fontSize: 12}}>Wpisz numer kontaktowy (format: 123456789)</p>
                         </div>
                     </div>
+
+                    {/* resizePhoneInput */}
+                    <div id="resize-phoneInput">
+                        <input type="tel" maxLength="9" minLength="9" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" onChange = {this.handleChangePhoneNumber}
+                        className="addphoneNumber" placeholder="123456789 (opcjonalnie)" value={this.state.phoneNumber} 
+                        style={{textIndent: 20, width: 291, marginRight: 20, height: 42, textAlign: "stretch", outline: "none", 
+                        border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${phoneIcon}")`, 
+                        backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
+                        backgroundClip: "border-box"}}/>
+                        <p className="addMailP" style={{marginLeft: 10, fontSize: 12, marginBottom: 20}}>Wpisz numer kontaktowy (format: 123456789)</p>
+                    </div>
+
                     <div style={{display: "flex", marginBottom: 10}}>
                         <div>
                             <select form="addBlockFormDiv" required onChange = {this.handleChangeInstrument} className="addInstrument"
                             value={this.state.instrument} style={{textIndent: 20, 
-                            width: 300, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
+                            width: 297, marginRight: 20, height: 46, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${guitarIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box"}}>
@@ -263,20 +286,32 @@ export default  class AddBlock extends React.Component {
                             backgroundClip: "border-box"}}/> */}
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12}}>Instrument na którym grasz</p>
                         </div>
-                        <div>
+                        <div id="dateInputDiv">
                             <input required className="dateInput" type="date" onChange = {this.handleChangeSinceWhen} min="2021-02-01" max="2021-12-31" 
-                            value={this.state.sinceWhen} style={{textIndent: 10, width: 303,
+                            value={this.state.sinceWhen} style={{textIndent: 10, width: 294,
                             marginRight: 20, height: 44, outline: "none", border: "1px solid #0000001F", 
                             borderRadius: 4,  backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
                             backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
                             <p className="addCityP" style={{marginLeft: 10, fontSize: 12, marginBottom: 20}}>Od kiedy chciałbyś zacząć grać</p>
                         </div>
                     </div>
-                    <div className="dateInputOuterDiv" style={{display: "flex", marginBottom: 20}}>
-                        <div className="dateInputInnerDiv">
-                            <textarea form="addBlockFormDiv" required onChange = {this.handleChangeComment} className="addComment"
+
+                    {/* resizeDateInput */}
+                    <div id="resize-dateInput">
+                        <input required className="dateInput" type="date" onChange = {this.handleChangeSinceWhen} min="2021-02-01" max="2021-12-31" 
+                        value={this.state.sinceWhen} style={{textIndent: 10, width: 294,
+                        marginRight: 20, height: 44, outline: "none", border: "1px solid #0000001F", 
+                        borderRadius: 4,  backgroundImage: `url("${timeIcon}")`, backgroundColor: "white", 
+                        backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", backgroundClip: "border-box"}}/>
+                        <p className="addCityP" style={{marginLeft: 10, fontSize: 12, marginBottom: 20}}>Od kiedy chciałbyś zacząć grać</p>
+                    </div>
+
+
+                    <div className="textAreaOuterDiv" style={{display: "flex", marginBottom: 20}}>
+                        <div className="textAreaInnerDiv">
+                            <textarea id="formTextArea" form="addBlockFormDiv" required onChange = {this.handleChangeComment} className="addComment"
                             placeholder="Napisz coś o sobie albo swoim zespole" value={this.state.comment}
-                            style={{textIndent: 20, width: 516, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
+                            style={{textIndent: 20, marginRight: 20, height: 86, textAlign: "stretch", outline: "none", 
                             border: "1px solid #0000001F", borderRadius: 4, backgroundImage: `url("${messageIcon}")`, 
                             backgroundColor: "white", backgroundPosition: "95% 45%", backgroundRepeat: "no-repeat", 
                             backgroundClip: "border-box", fontFamily: "Arial", resize: "none", paddingTop: 20,
@@ -294,7 +329,7 @@ export default  class AddBlock extends React.Component {
                     style={{paddingLeft: 2, marginRight: 10}} />
                 </div>
                 <div className="addAdv" style={{display: "inline-block", marginLeft: 40, backgroundColor: "#6200EE", 
-                borderRadius: "4px", alignItems: "center"}}>
+                borderRadius: "4px", alignItems: "center", marginBottom: 40}}>
                     <input type="submit" htmlFor="musicInp" value="DODAJ OGŁOSZENIE" style={{fontFamily: "Roboto", 
                     fontSize: 18, color: "#FFFFFF", paddingLeft: 35, paddingRight: 15, height: 30, border: "none", 
                     backgroundColor: "#6200EE", borderRadius: 4, backgroundImage: `url("${purplePlusIcon}")`, 

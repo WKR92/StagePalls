@@ -10,7 +10,6 @@ import plus from './icons/icon-content-add_24px.svg';
 import bust from './icons/Icon material-person.svg';
 import AddBlock from './makeAdForm'
 import Table from './filtersAndAdsTable'
-import { event } from 'jquery';
 
 
 const adsUrl = "https://stagepalls.herokuapp.com/ads";
@@ -21,17 +20,42 @@ const usersUrl = "https://stagepalls.herokuapp.com/users";
 const ctUrl = "https://stagepalls.herokuapp.com/genres"
 
 
+class Menu extends React.Component{
+  constructor(props) {
+    super(props);
+  }
+  render(){
+    return(
+      <div id="resizeInnerContainer" class="resizeInnerContainer" style={{borderRadius: 12, backgroundColor: "#30323A", padding: 12, marginBottom: -40}}>
+          <div className="resize-megaphone" style={{display: "flex", marginBottom: 10}}>
+            <img className="megaphone-icon" alt="megaphone-icon" src={megaphone} style={{
+              marginRight: 15}} />
+            <button id="allAdsBtn" className="resize-megaphone-link" onClick={this.props.refferenceToTable}>Wszystkie ogłoszenia</button>
+          </div>
+          <div className="resize-plus" style={{display: "flex"}}>
+              <img className="plus-icon" alt="plus-icon" src={plus} style={{
+              marginRight: 12, marginLeft: -2}} />
+              <button id="DodajOgłoszenieBTN" className="resize-plus-link" onClick={this.props.callAdForm}>Dodaj ogloszenie</button>
+          </div>
+      </div>
+    )
+  }
+}
+
+
 class App extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
         blocks: true,
-        adForm: false
+        adForm: false,
+        showMenu: false
       }
       this.child = React.createRef();
       this.showAddForm = this.showAddForm.bind(this);
       this.showBlocks = this.showBlocks.bind(this);
       this.refferToChildComponentDidMount = this.refferToChildComponentDidMount.bind(this);
+      this.openMenu = this.openMenu.bind(this);
   }
   componentDidMount(){    
     var navLogoElem = document.querySelector('.nav__logo');
@@ -65,6 +89,11 @@ class App extends React.Component {
       adForm: !this.state.adForm
     })
   }
+  openMenu(){
+    this.setState({
+      showMenu: !this.state.showMenu
+    })
+  }
   render(){
   return (
     <div className="App">
@@ -81,9 +110,10 @@ class App extends React.Component {
             <img className="megaphone-icon" alt="megaphone-icon" src={megaphone} />
             <button id="allAdsBtn" className="megaphone-link" onClick={this.refferToChildComponentDidMount}>Wszystkie ogłoszenia</button>
           </div>
-          <div className="tune">
+          {/* div czeka na dodanie userów */}
+          {/* <div className="tune">
               <img className="tune-icon" alt="tune-icon" src={tune} /><button className="tune-link">Twoje ogłoszenia</button>
-          </div>
+          </div> */}
           <div className="lupe">
               <img className="lupe-icon" alt="lupe-icon" src={lupe} /><a onClick={this.showBlocks} style={{marginLeft: 7}} href="#travelToMainTable" className="lupe-link">Szukaj ogłoszenia</a>
           </div>
@@ -91,15 +121,27 @@ class App extends React.Component {
               <img className="plus-icon" alt="plus-icon" src={plus} />
               <button id="DodajOgłoszenieBTN" className="plus-link" onClick={this.showAddForm}>Dodaj ogloszenie</button>
           </div>
-          <div className="bust">
+          {/* div czeka na dodanie userów */}
+          {/* <div className="bust">
               <img className="bust-icon" alt="bust-icon"  src={bust} /><button className="bust-link">Twój profil</button>
-          </div>
+          </div> */}
         </nav>
         <div className="main">
-            <div id="travel-top" className="main__login">
+
+            {/* Div for resize */}
+            <div className="resizeNav" style={{display: "flex"}}>
+              <img alt="logo" onClick={this.openMenu} src={logoStagePalls} className="nav__logo" id="logo" />
+              <div className="resizeLinkBar" style={{display: "inline-block"}}>
+                {this.state.showMenu ? <Menu refferenceToTable={this.refferToChildComponentDidMount} callAdForm={this.showAddForm}/> : null}
+              </div>
+            </div>
+            
+            {/* div czeka na dodanie userów */}
+            {/* <div id="travel-top" className="main__login">
                 <p className="loged-as">Zalogowany jako: user</p>
                 <button className="log-in-out">Wyloguj</button>
-            </div>
+            </div> */}
+            
             <div className="main__description">
                 <h1 className="main__description__title">Znajdź muzyka lub zespół w szybki i łatwy sposób.</h1>
                 <p className="main__description__sub-title">Skorzystaj z wyszukiwarki by dodać myzuka lub zespół 

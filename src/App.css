@@ -15,6 +15,41 @@ select {
   -moz-appearance: none;
 }
 
+#formTextArea {
+  width: 502px;
+}
+
+#resize-mailInput {
+  display: none;
+}
+
+#resize-phoneInput {
+  display: none;
+}
+
+#resize-dateInput {
+  display: none;
+}
+
+#filterInfo {
+  display: none;
+}
+
+#resizeInnerContainer {
+  display: none;
+}
+
+#logo {
+  height: 29px;
+  font-family: "Parkway Lush";
+  background-color: #30323A;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: -40px;
+  display: none;
+  margin-right: 1px;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -188,6 +223,28 @@ nav .bust .bust-link:hover {
   background: #EFEFEF;
 }
 
+.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-megaphone .resize-megaphone-link {
+  border: none;
+  outline: none;
+  background-color: #30323A;
+  color: #FFFF;
+}
+
+.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-megaphone .resize-megaphone-link:hover {
+  color: #8f1f2e;
+}
+
+.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-plus .resize-plus-link {
+  border: none;
+  outline: none;
+  background-color: #30323A;
+  color: #FFFF;
+}
+
+.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-plus .resize-plus-link:hover {
+  color: #8f1f2e;
+}
+
 .main .main__login {
   display: flex;
   right: 0;
@@ -250,5 +307,56 @@ nav .bust .bust-link:hover {
 @media only screen and (max-width: 1000px) {
   nav {
     display: none;
+  }
+  #logo {
+    display: inline-block;
+  }
+  #resizeInnerContainer {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  #resize-mailInput {
+    display: block;
+  }
+  #resize-phoneInput {
+    display: block;
+  }
+  #resize-dateInput {
+    display: block;
+  }
+  #mailInputDiv {
+    display: none;
+  }
+  #phoneInputDiv {
+    display: none;
+  }
+  #dateInputDiv {
+    display: none;
+  }
+  #formTextArea {
+    width: 185px;
+  }
+  #addBlockFormDiv {
+    margin-left: 18%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #blueDiv {
+    padding-right: 4px;
+  }
+  #hiddenAreaEmailAndPhoneBlock {
+    width: 100px;
+  }
+  #submitBtn {
+    display: none;
+  }
+  #filterInfo {
+    display: block;
+  }
+  #addBlockFormDiv {
+    margin-left: 10%;
   }
 }
