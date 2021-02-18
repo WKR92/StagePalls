@@ -153,7 +153,7 @@ export default class Table extends React.Component {
     render(){
       const loading = <div style={{height: 150, marginLeft: 20, backgroundColor: "#FFFFFF", display: "flex", 
                             marginTop: 20, textAlign:"center"}}>
-                              <p style={{margin: "auto"}}>Ładowanie...</p>
+                              <p style={{margin: "auto"}}>Ładowanie... To może zająć minutę</p>
                            </div>
         return(
           
