@@ -1,6 +1,6 @@
 {
   "name": "stage-palls",
-  "homepage": "https://wkr92.github.io/StagePalls",
+  "homepage": "https://WKR92.github.io/StagePalls",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf docs && mv build docs",
+    "build": "react-scripts build && del -rf docs && move build docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
