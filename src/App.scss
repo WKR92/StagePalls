@@ -37,7 +37,12 @@ select {
     -moz-appearance: none;
 
 }
-
+#blocksList{
+    margin-left: -20px;
+}
+#blocksHeadlinesInnerDiv{
+    margin-left: 20px;
+}
 #formTextArea{
     width: 502px;
 }
@@ -53,25 +58,13 @@ select {
     display: none;
 }
 
-#filterInfo{
+#resizeFilterSubmitBtn{
     display: none;
 }
 
 #resizeInnerContainer{
     display: none;
 }
-
-#logo{
-    height: 29px;
-    font-family: "Parkway Lush";
-    background-color: #30323A;
-    padding: 24px;
-    border-radius: 12px;  
-    margin-bottom: -40px;
-    display: none;
-    margin-right: 1px;
-}
-
 
 html {
     scroll-behavior: smooth;
@@ -91,7 +84,7 @@ nav {
 
 
     .nav__logo {
-        height: 29px;
+        height: 30px;
         font-family: "Parkway Lush";
         color: #ffff;
         padding-top: 40px;
@@ -167,62 +160,133 @@ nav {
     background: #EFEFEF;
 
     .resizeNav{
+        width: 100%;
+        background-color: #30323A;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: none;
 
-        .resizeLinkBar{
+        .resizeNavInnerDiv{
+            display: flex;
+            align-items: center;
+            height: 80px;
 
-            .resizeInnerContainer{
-
-                .resize-megaphone{
-
-                    .resize-megaphone-link{
-                        border: none;
-                        outline: none;
-                        background-color: #30323A;
-                        color: #FFFF;
-                        &:hover{
-                            color: #8f1f2e;
-                        }
-                    }
-                }
-
-                .resize-plus{
-
-                    .resize-plus-link{
-                        border: none;
-                        outline: none;
-                        background-color: #30323A;
-                        color: #FFFF;
-                        &:hover{
-                            color: #8f1f2e;
-                        }
-                    }
-                }
+            .nav__logo{
+                height: 29px;
+                font-family: "Parkway Lush";
+                margin-left: 30px;
+            }
+    
+            .menuIcon{
+                background-color: "transparent";
+                margin-left: auto;
+                margin-right: 20px;
+                width: 45px;
+                height: 45px;
             }
         }
     }
 
-    .main__login{
-        display: flex;
-        right: 0;
-        float: right;
-        align-items: center;
+    .resizeLinkBar{
+        width: 100%;
+        height: auto;
+        display: none;
+
+
+            .resize-megaphone{
+                display: flex;
+                margin-left: 20px;
+                margin-bottom: 15px;
+                padding-top: 5px;
+                
+
+                .resize-megaphone-icon{
+                    margin-right: 10px;
+                }
+
+                .resize-megaphone-link{
+                    border: none;
+                    outline: none;
+                    background-color: #30323A;
+                    color: #FFFF;
+                    &:hover{
+                        color: #8f1f2e;
+                    }
+                }
+            }
+
+            .resize-lupe{
+                display: flex;
+                margin-left: 20px;
+                margin-bottom: 15px;
+                padding-top: 0px;
+                
+
+                .resize-lupe-icon{
+                    margin-right: 12px;
+                }
+
+                .resize-lupe-link{
+                    text-decoration: none;
+                    font-size: 14px;
+                    border: none;
+                    outline: none;
+                    background-color: #30323A;
+                    color: #FFFF;
+                    &:hover{
+                        color: #8f1f2e;
+                    }
+                }
+            }
+            
+
+            .resize-plus{
+                margin-left: 17px;
+                padding-bottom: 20px;
+                display: flex;
+
+
+                .resize-plus-icon{
+                    margin-right: 8px;
+                }
+
+                .resize-plus-link{
+                    border: none;
+                    outline: none;
+                    background-color: #30323A;
+                    color: #FFFF;
+                    &:hover{
+                        color: #8f1f2e;
+                    }
+                }
+            }
+        }
+
+    // user reation not ready yet
+
+    // .main__login{
+    //     display: flex;
+    //     right: 0;
+    //     float: right;
+    //     align-items: center;
         
 
-        .loged-as{
-            padding-right: 10px;
-        }
+    //     .loged-as{
+    //         padding-right: 10px;
+    //     }
 
-        .log-in-out{
-            width: 88px;
-            height: 32px;
-            background-color: #363840;
-            color: #FFFFFFDE;
-            margin-right: 10px;
-            &:hover{
-                background-color: #8f1f2e;
-            }
-        }
-    }
+    //     .log-in-out{
+    //         width: 88px;
+    //         height: 32px;
+    //         background-color: #363840;
+    //         color: #FFFFFFDE;
+    //         margin-right: 10px;
+    //         &:hover{
+    //             background-color: #8f1f2e;
+    //         }
+    //     }
+    // }
 
     .main__description{
         padding-left: 20px;
@@ -273,10 +337,13 @@ nav {
     nav {
         display: none;
     }
-    #logo{
-        display: inline-block;
+    #resizeNav{
+        display: block;
     }
     #resizeInnerContainer{
+        display: block;
+    }
+    #resizeLinkBar{
         display: block;
     }
 }
@@ -308,6 +375,9 @@ nav {
     #addBlockFormDiv{
         margin-left: 18%;
     }
+    #filtersForm{
+        justify-content: space-evenly;
+    }
 }
 
 
@@ -321,10 +391,42 @@ nav {
     #submitBtn{
         display: none;
     }
-    #filterInfo{
-        display: block;
-    }
     #addBlockFormDiv{
         margin-left: 10%;
+    }
+    #mainTable{
+        margin-right: 0px;
+    }
+    #cityInp{
+        margin-right: 0px;
+    }
+    #blocksList{
+        margin-left: -40px;
+    }
+    #blocksHeadlinesInnerDiv{
+        margin-left: 0px;
+    }
+    #resizeFilterSubmitBtn{
+        display: block;
+        width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: #363840;
+        color: #ffff;
+        outline: none;
+        &:hover{
+            background-color: #8f1f2e;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 430px) {
+    body{
+        zoom: 0.7;
+    }
+    #filtersForm{
+        zoom: 0.9;
     }
 }

@@ -15,6 +15,14 @@ select {
   -moz-appearance: none;
 }
 
+#blocksList {
+  margin-left: -20px;
+}
+
+#blocksHeadlinesInnerDiv {
+  margin-left: 20px;
+}
+
 #formTextArea {
   width: 502px;
 }
@@ -31,23 +39,12 @@ select {
   display: none;
 }
 
-#filterInfo {
+#resizeFilterSubmitBtn {
   display: none;
 }
 
 #resizeInnerContainer {
   display: none;
-}
-
-#logo {
-  height: 29px;
-  font-family: "Parkway Lush";
-  background-color: #30323A;
-  padding: 24px;
-  border-radius: 12px;
-  margin-bottom: -40px;
-  display: none;
-  margin-right: 1px;
 }
 
 html {
@@ -68,7 +65,7 @@ nav {
 }
 
 nav .nav__logo {
-  height: 29px;
+  height: 30px;
   font-family: "Parkway Lush";
   color: #ffff;
   padding-top: 40px;
@@ -223,49 +220,106 @@ nav .bust .bust-link:hover {
   background: #EFEFEF;
 }
 
-.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-megaphone .resize-megaphone-link {
-  border: none;
-  outline: none;
+.main .resizeNav {
+  width: 100%;
   background-color: #30323A;
-  color: #FFFF;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: none;
 }
 
-.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-megaphone .resize-megaphone-link:hover {
-  color: #8f1f2e;
-}
-
-.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-plus .resize-plus-link {
-  border: none;
-  outline: none;
-  background-color: #30323A;
-  color: #FFFF;
-}
-
-.main .resizeNav .resizeLinkBar .resizeInnerContainer .resize-plus .resize-plus-link:hover {
-  color: #8f1f2e;
-}
-
-.main .main__login {
+.main .resizeNav .resizeNavInnerDiv {
   display: flex;
-  right: 0;
-  float: right;
   align-items: center;
+  height: 80px;
 }
 
-.main .main__login .loged-as {
-  padding-right: 10px;
+.main .resizeNav .resizeNavInnerDiv .nav__logo {
+  height: 29px;
+  font-family: "Parkway Lush";
+  margin-left: 30px;
 }
 
-.main .main__login .log-in-out {
-  width: 88px;
-  height: 32px;
-  background-color: #363840;
-  color: #FFFFFFDE;
+.main .resizeNav .resizeNavInnerDiv .menuIcon {
+  background-color: "transparent";
+  margin-left: auto;
+  margin-right: 20px;
+  width: 45px;
+  height: 45px;
+}
+
+.main .resizeLinkBar {
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.main .resizeLinkBar .resize-megaphone {
+  display: flex;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  padding-top: 5px;
+}
+
+.main .resizeLinkBar .resize-megaphone .resize-megaphone-icon {
   margin-right: 10px;
 }
 
-.main .main__login .log-in-out:hover {
-  background-color: #8f1f2e;
+.main .resizeLinkBar .resize-megaphone .resize-megaphone-link {
+  border: none;
+  outline: none;
+  background-color: #30323A;
+  color: #FFFF;
+}
+
+.main .resizeLinkBar .resize-megaphone .resize-megaphone-link:hover {
+  color: #8f1f2e;
+}
+
+.main .resizeLinkBar .resize-lupe {
+  display: flex;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  padding-top: 0px;
+}
+
+.main .resizeLinkBar .resize-lupe .resize-lupe-icon {
+  margin-right: 12px;
+}
+
+.main .resizeLinkBar .resize-lupe .resize-lupe-link {
+  text-decoration: none;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: #30323A;
+  color: #FFFF;
+}
+
+.main .resizeLinkBar .resize-lupe .resize-lupe-link:hover {
+  color: #8f1f2e;
+}
+
+.main .resizeLinkBar .resize-plus {
+  margin-left: 17px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.main .resizeLinkBar .resize-plus .resize-plus-icon {
+  margin-right: 8px;
+}
+
+.main .resizeLinkBar .resize-plus .resize-plus-link {
+  border: none;
+  outline: none;
+  background-color: #30323A;
+  color: #FFFF;
+}
+
+.main .resizeLinkBar .resize-plus .resize-plus-link:hover {
+  color: #8f1f2e;
 }
 
 .main .main__description {
@@ -308,10 +362,13 @@ nav .bust .bust-link:hover {
   nav {
     display: none;
   }
-  #logo {
-    display: inline-block;
+  #resizeNav {
+    display: block;
   }
   #resizeInnerContainer {
+    display: block;
+  }
+  #resizeLinkBar {
     display: block;
   }
 }
@@ -341,6 +398,9 @@ nav .bust .bust-link:hover {
   #addBlockFormDiv {
     margin-left: 18%;
   }
+  #filtersForm {
+    justify-content: space-evenly;
+  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -353,10 +413,41 @@ nav .bust .bust-link:hover {
   #submitBtn {
     display: none;
   }
-  #filterInfo {
-    display: block;
-  }
   #addBlockFormDiv {
     margin-left: 10%;
+  }
+  #mainTable {
+    margin-right: 0px;
+  }
+  #cityInp {
+    margin-right: 0px;
+  }
+  #blocksList {
+    margin-left: -40px;
+  }
+  #blocksHeadlinesInnerDiv {
+    margin-left: 0px;
+  }
+  #resizeFilterSubmitBtn {
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #363840;
+    color: #ffff;
+    outline: none;
+  }
+  #resizeFilterSubmitBtn:hover {
+    background-color: #8f1f2e;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  body {
+    zoom: 0.7;
+  }
+  #filtersForm {
+    zoom: 0.9;
   }
 }

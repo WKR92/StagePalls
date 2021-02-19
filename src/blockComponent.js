@@ -12,6 +12,7 @@ class HiddenArea extends React.Component{
             mail: this.props.mail,
             comment: this.props.comment,
             phoneNumber: this.props.phoneNumber,
+            forWho: this.props.forWho,
             showMusicArea: true
         };
     }
@@ -38,10 +39,10 @@ class HiddenArea extends React.Component{
             <div id={this.state.id}>
                 <div  className="HiddenAreaMainDiv" style={{height: 150, backgroundColor: "#FFFFFF", margin: "auto", display: "flex", border: "2px solid #EFEFEF",
                 borderRight: "transparent"}}>
-                    <div id="hiddenAreaEmailAndPhoneBlock" style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid #5F77D9",
-                    borderTop: "2.85px solid #5F77D9"}}>
+                    <div id="hiddenAreaEmailAndPhoneBlock" style={{display: "flex", flexDirection: "column", width: 230, border: "2px solid #EFEFEF", borderLeft: "3px solid",
+                    borderTop: "2.85px solid", borderTopColor: this.props.forWho === "musician" ? "#5F77D9" : "#00A693", borderLeftColor: this.props.forWho === "musician" ? "#5F77D9" : "#00A693" }}>
                         <p style={{marginBottom:0, paddingTop:5, marginLeft: "5%", fontSize: 14}}>Email:</p>
-                        <p style={{marginTop:5, marginLeft: "8%",marginBottom:0, color: "#be3144", overflow: "auto"}}>{this.state.mail}</p>
+                        <p style={{marginTop:5, marginLeft: "8%", marginBottom: 0, color: "#be3144", overflow: "auto"}}>{this.state.mail}</p>
                         <p style={{marginBottom:0, marginLeft: "5%", fontSize: 14}}>Numer tel:</p>
                         <p className="telP" style={{marginTop:5, marginLeft: "8%", color: "#be3144", overflow: "auto"}}>{this.state.phoneNumber}</p>
                     </div>
@@ -66,7 +67,7 @@ export default class Block extends React.Component {
             id: this.props.blockID,
             mail: this.props.mail === "" ? "Nie podano" : this.props.mail,
             comment: this.props.comment,
-            phoneNumber: this.props.phoneNumber === "0" ? "Nie podano" : this.props.phoneNumber,
+            phoneNumber: this.props.phoneNumber === "0" ? "Nie podano" : this.props.phoneNumber
         };
         this.hiddenArea = this.hiddenArea.bind(this);
     }
@@ -86,26 +87,26 @@ export default class Block extends React.Component {
                 <div onClick={this.hiddenArea} className="block" style={{margin: "auto", display: "flex", marginTop: 5, 
                 backgroundColor: "#FFFFFF", marginBottom: "-1px"}}>
                     <div style={{display: "flex", borderRight: "2px solid #EFEFEF", width: "14%", paddingRight: 20}}>
-                        <div id="blueDiv" style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
+                        <div id="blueDiv" style={{width: "10px", backgroundColor: this.props.forWho === "musician" ? "#5F77D9" : "#00A693"}}></div>
                         <div style={{margin: "auto", display: "flex", flexDirection: "column", width: "100%"}}>
                             <data style={{marginLeft: "20%", marginBottom: "0px", paddingTop: 15, fontSize: "14px"}}>
                             {this.props.dateOfPublished}</data>
-                            <p style={{marginLeft: "20%", marginTop: "0px", fontSize: "16px", paddingRight: 10}}>
+                            <p style={{marginLeft: "20%", fontSize: "16px"}}>
                             {this.props.forWho === "band" ? "Szukam zespołu" : "Szukam muzyka"}</p>
                         </div>
                     </div>
                     <div style={{display: "flex", alignItems: "center", borderLeft: "2px solid #EFEFEF", justifyContent: "space-evenly", width: "80%"}}>
-                        <p id="instrumentP" style={{marginLeft: 0, width: "20%", marginRight: -12, paddingTop: 6, textAlign: "center"}}>{this.props.instrument}</p>
-                        <p id="genreP" style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>{this.props.genre}</p>
-                        <p style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>{this.props.fromWhen}</p>
-                        <p id="cityP" style={{width: "20%", marginRight: 0, paddingTop: 6, marginLeft: 0, textAlign: "center"}}>{this.props.city}</p>
+                        <p id="instrumentP" style={{width: "20%", marginRight: -12, paddingTop: 6, textAlign: "center"}}>{this.props.instrument}</p>
+                        <p id="genreP" style={{width: "20%", paddingTop: 6, textAlign: "center"}}>{this.props.genre}</p>
+                        <p style={{width: "20%", paddingTop: 6, textAlign: "center"}}>{this.props.fromWhen}</p>
+                        <p id="cityP" style={{width: "20%", paddingTop: 6, textAlign: "center"}}>{this.props.city}</p>
                     </div>
                 </div>
                 <div>
             </div >
                 <div className="HiddenAreaHolder">
                     {this.state.showHiddenArea ? <HiddenArea blockID={this.state.id} mail={this.state.mail} 
-                    comment={this.state.comment} phoneNumber={this.state.phoneNumber}
+                    comment={this.state.comment} phoneNumber={this.state.phoneNumber} forWho={this.props.forWho}
                     /> : null}
                 </div>
                 

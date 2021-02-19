@@ -31,7 +31,7 @@ export default class Table extends React.Component {
     //   document.getElementById("DodajOgłoszenieBTN").disabled = true;
     //   setTimeout(function(){
     //     document.getElementById("submitBtn").disabled = false;
-    //     // document.getElementById("DodajOgłoszenieBTN").disabled = false;
+    //     document.getElementById("DodajOgłoszenieBTN").disabled = false;
     //     document.getElementById("allAdsBtn").disabled = false;
     //   }, 1700)
     // };
@@ -82,7 +82,10 @@ export default class Table extends React.Component {
       }))
           
       //Animations
-      gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5})
+      function stopAnimation(){
+        gsap.to(".blocksHolderContainer", {duration: 0, x: 0, opacity: 1})
+      }
+      gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5, onInterrupt: stopAnimation()})
       
     }
     // componentWillUpdate(){
@@ -133,7 +136,11 @@ export default class Table extends React.Component {
         filteredAds: alowedLi.length < 1 ? nothingFound : alowedLi
       }))
       .then(this.setState({ showFilteredBlocks: true, showBlock: false,}))
-      .then(gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5}))
+      .then(gsap.from(".blocksHolderContainer", {duration: 1.5, x: +100, opacity: 0.5, onInterrupt: stopAnimation()}))
+
+      function stopAnimation(){
+        gsap.to(".blocksHolderContainer", {duration: 0, x: 0, opacity: 1})
+      }
     }
     handleChangeInstrument(event) {
       this.setState({
@@ -157,7 +164,7 @@ export default class Table extends React.Component {
                            </div>
         return(
           
-            <div className="blocksHolder">
+            <div id="blocksHolder" className="blocksHolder">
                 <form id="filtersForm" onSubmit={this.handleSubmit} className="table-form" style={{display: "flex", paddingLeft: 20}}>
                     <input list="instrumenty" id="instrumentInp" value={this.state.instrumentInput} type="text" onChange = {this.handleChangeInstrument} 
                       className="filter-instrument" placeholder="Instrument" style={{width: 120, marginRight: 20, 
@@ -192,15 +199,13 @@ export default class Table extends React.Component {
                     <input id="submitBtn" className="submitBtn" type="submit" value="Zatwierdź" style={{color: "#FFFFFFDE", width: "120px", 
                       borderRadius: "10px", outline: "none"}}/>
                 </form>
-                <p id="filterInfo" style={{marginTop: 15, textAlign: "center", color: "#363840",
-                fontSize: 14}}>Zatwierdź filtrowane wartości enterem</p>
-                
-                
-                <div className="innerDiv">
-                
-                {/* <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", paddingTop: 20, 
-                    justifyContent: "space-evenly", border: "1px solid green"}}> */}
-                    <div className="table-disc" style={{margin: "auto", marginLeft: 20, display: "flex", 
+
+                {/* resize submit form button */}
+                {this.state.cityInput === "" && this.state.instrumentInput === "" && this.state.genreInput === "" ? null :
+                <input form="filtersForm" id="resizeFilterSubmitBtn" className="submitBtn" type="submit" value="Zatwierdź"/>}
+
+                <div className="blocksHeadlines">
+                    <div id="blocksHeadlinesInnerDiv" className="table-disc" style={{display: "flex", 
                     marginTop: 5, backgroundColor: "#EFEFEF", marginBottom: "-1px", paddingTop: 20}}>
                     <div style={{display: "flex", borderRight: "2px solid #EFEFEF", width: "14%", paddingRight: 20, visibility: "hidden"}}>
                         <div style={{width: "10px", backgroundColor: "#5F77D9"}}></div>
@@ -214,15 +219,15 @@ export default class Table extends React.Component {
                     <div style={{display: "flex", alignItems: "center", justifyContent: "space-evenly", width: "80%"}}>
                         <p id="instrumentP" style={{marginLeft: 0, width: "20%", marginRight: -12, paddingTop: 6, textAlign: "center"}}>Instrument</p>
                         <p id="genreP" style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>Gatunek</p>
-                        <p style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>Od kiedy</p>
+                        <p id="sinceWhenP" style={{width: "20%", marginRight: 0, paddingTop: 6, textAlign: "center"}}>Od kiedy</p>
                         <p id="cityP" style={{width: "20%", marginRight: 0, paddingTop: 6, marginLeft: 0, textAlign: "center"}}>Miasto</p>
                     </div>
                 </div>
                     <div className="blocksHolderContainer" style={{marginBottom: 200}}>
                     {this.state.adsLiList.length < 1 ? loading : null}
-                    {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
+                    {this.state.showBlock ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none"}}>
                       {this.state.adsLiList}</ul> : this.state.showFilteredBlocks}
-                    {this.state.showFilteredBlocks ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none", marginLeft: "-20px"}}>
+                    {this.state.showFilteredBlocks ? <ul id="blocksList" className="singleBlock" style={{listStyleType: "none"}}>
                       {this.state.filteredAds}</ul> : null}
                     </div>
                 </div>

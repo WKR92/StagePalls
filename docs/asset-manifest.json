@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/StagePalls/static/css/main.ec6ba43b.chunk.css",
-    "main.js": "/StagePalls/static/js/main.1af099d1.chunk.js",
-    "main.js.map": "/StagePalls/static/js/main.1af099d1.chunk.js.map",
+    "main.css": "/StagePalls/static/css/main.bc976d3c.chunk.css",
+    "main.js": "/StagePalls/static/js/main.7e5831d7.chunk.js",
+    "main.js.map": "/StagePalls/static/js/main.7e5831d7.chunk.js.map",
     "runtime-main.js": "/StagePalls/static/js/runtime-main.cf30a757.js",
     "runtime-main.js.map": "/StagePalls/static/js/runtime-main.cf30a757.js.map",
-    "static/js/2.1222dc7e.chunk.js": "/StagePalls/static/js/2.1222dc7e.chunk.js",
-    "static/js/2.1222dc7e.chunk.js.map": "/StagePalls/static/js/2.1222dc7e.chunk.js.map",
+    "static/js/2.a22909da.chunk.js": "/StagePalls/static/js/2.a22909da.chunk.js",
+    "static/js/2.a22909da.chunk.js.map": "/StagePalls/static/js/2.a22909da.chunk.js.map",
     "static/js/3.a95082e2.chunk.js": "/StagePalls/static/js/3.a95082e2.chunk.js",
     "static/js/3.a95082e2.chunk.js.map": "/StagePalls/static/js/3.a95082e2.chunk.js.map",
     "index.html": "/StagePalls/index.html",
-    "static/css/main.ec6ba43b.chunk.css.map": "/StagePalls/static/css/main.ec6ba43b.chunk.css.map",
-    "static/js/2.1222dc7e.chunk.js.LICENSE.txt": "/StagePalls/static/js/2.1222dc7e.chunk.js.LICENSE.txt",
+    "static/css/main.bc976d3c.chunk.css.map": "/StagePalls/static/css/main.bc976d3c.chunk.css.map",
+    "static/js/2.a22909da.chunk.js.LICENSE.txt": "/StagePalls/static/js/2.a22909da.chunk.js.LICENSE.txt",
     "static/media/Horse-Neighing-D-www.fesliyanstudios.com.3814e0d9.mp3": "/StagePalls/static/media/Horse-Neighing-D-www.fesliyanstudios.com.3814e0d9.mp3",
     "static/media/Icon awesome-clock.f1f98b13.svg": "/StagePalls/static/media/Icon awesome-clock.f1f98b13.svg",
     "static/media/Icon awesome-guitar.2d423e1e.svg": "/StagePalls/static/media/Icon awesome-guitar.2d423e1e.svg",
@@ -26,13 +26,14 @@
     "static/media/Tiny Button Push-SoundBible.com-513260752.ca3856e4.mp3": "/StagePalls/static/media/Tiny Button Push-SoundBible.com-513260752.ca3856e4.mp3",
     "static/media/Trailing icon.95834bf3.svg": "/StagePalls/static/media/Trailing icon.95834bf3.svg",
     "static/media/icon-content-add_24px.df86b49f.svg": "/StagePalls/static/media/icon-content-add_24px.df86b49f.svg",
+    "static/media/menuIcon.d52e4f8d.png": "/StagePalls/static/media/menuIcon.d52e4f8d.png",
     "static/media/stagepallslogo.21cdc497.svg": "/StagePalls/static/media/stagepallslogo.21cdc497.svg",
     "static/media/↳Color.95008124.svg": "/StagePalls/static/media/↳Color.95008124.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cf30a757.js",
-    "static/js/2.1222dc7e.chunk.js",
-    "static/css/main.ec6ba43b.chunk.css",
-    "static/js/main.1af099d1.chunk.js"
+    "static/js/2.a22909da.chunk.js",
+    "static/css/main.bc976d3c.chunk.css",
+    "static/js/main.7e5831d7.chunk.js"
   ]
 }
